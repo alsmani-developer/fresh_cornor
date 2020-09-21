@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     public function index(){
-        return 'hey';
+        return view('site.home.index');
     }
 }

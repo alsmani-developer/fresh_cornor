@@ -14,6 +14,10 @@ use App\Package;
 */
 
 Route::get('/', 'Site\HomeController@index');
-
+Route::get('/change-lang/{val}', 'Site\HomeController@changeLanguage');
+Route::get('/product', 'Site\ProductController@show');
+Route::get('/products', 'Site\ProductController@index');
+Route::get('/login', 'Site\UserController@login')->name('login');
+Route::get('/register', 'Site\UserController@register')->name('register');
 
 

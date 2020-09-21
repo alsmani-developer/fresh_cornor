@@ -73,7 +73,7 @@ td, th{
 }
 
     </style>
-      <script src="{{ asset('js/app.js') }}" defer></script>
+      <script src="{{asset('js/app.js')}}" defer></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -190,7 +190,7 @@ td, th{
 
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                      <a href="#" class="nav-link">
+                  <a href="{{route('types')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>  الانواع</p>
                       </a>
@@ -199,7 +199,7 @@ td, th{
 
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <a href="{{route('origin')}}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>  اصل النوع</p>
                         </a>
@@ -208,7 +208,7 @@ td, th{
 
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                          <a href="#" class="nav-link">
+                      <a href="{{route('meat_aera')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>  مكان اللحمه</p>
                           </a>
@@ -217,7 +217,7 @@ td, th{
 
                       <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        <a href="{{route('meat_shape')}}" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>  شكل اللحمه</p>
                             </a>

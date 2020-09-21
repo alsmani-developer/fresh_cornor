@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 
+
 window.Vue = require('vue');
 
 import Swal from 'sweetalert2'
@@ -23,10 +24,17 @@ const Success = Swal.mixin({
     }
   })
 window.Success=Success;
-
+    import { Form, HasError, AlertError } from 'vform'
+    window.Form = Form;
+    Vue.component(HasError.name, HasError)
+    Vue.component(AlertError.name, AlertError)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 //products cluster vues component
 Vue.component('type-component', require('./components/products/Types.vue').default);
+Vue.component('origin-component', require('./components/products/Origin.vue').default);
+Vue.component('meate-shape', require('./components/products/MwateShpe.vue').default);
+Vue.component('meate-aera', require('./components/products/MeateAera.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

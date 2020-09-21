@@ -13,9 +13,36 @@ use Illuminate\Http\Request;
 |
 */
 
+//Vue js Api Route
+
+Route::apiResources(
+	[
+		'type' => 'VueAPI\CattleTypeController'
+	]
+);
+
+Route::apiResources(
+	[
+		'origin' => 'VueAPI\CattleOriginController'
+	]
+);
+
+Route::apiResources(
+	[
+		'meat_aera' => 'VueAPI\MeatsAeraController'
+	]
+);
+
+Route::apiResources(
+	[
+		'meat_shape' => 'VueAPI\MeatsShapeController'
+	]
+);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 //user routes 
 Route::post('login', 'Api\UserApi@login');
 Route::post('verfy','Api\UserApi@verfyPhoneNumber');

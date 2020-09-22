@@ -55,4 +55,16 @@ return [
   'Password' => 'كلمة السر',
   'Forget Password' => 'هل نسيت كلمة السر؟؟',
   'Remember Me' => 'تزكرني',
+  'Username' => 'اسم المستخدم',
+  'Email' => 'البريد الالكتروني',
+  'Address' => 'العنوان',
+  'Notification' => 'الاشعارات',
+  'Result Count' => 'عدد النتائج',
+  'Result' => 'نتيجة',
+  'invalid credentials' => 'احد الحقول المدخلة غير صحيح',
+  'validation number' => 'رقم التحقق',
+  'Enter' => 'ادخل',
+  'validation sent' => 'تم ارسال رقم التحقق الى هاتفك',
+  'Profile' => 'الصفحة الشخصية',
+  'LogOut' => 'تسجيل خروج'
 ];

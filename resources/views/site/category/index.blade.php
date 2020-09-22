@@ -18,13 +18,10 @@
                 <ul class="breadcrumb-tree">
                     <li><a href="/">{{ trans('sentence.Home Page') }}</a></li>
                     <li><a href="/products">{{ trans('sentence.All Categories') }}</a></li>
-                    <li><a href="/category/beef">
+                    <li class="active"><a href="/category/beef">
                         {{ trans('sentence.Beef') }}</a></li>
-                        <li><a href="/category/mutton">
-                            {{ trans('sentence.Mutton') }}</a></li>
-                            <li><a href="/category/goat-meat'">
-                                {{ trans('sentence.Goat meat') }}</a></li>
-                    <li class="active">{{ trans('sentence.Result Count') }} (227,490 {{ trans('sentence.Result') }})</li>
+                    <li class="active">{{ trans('sentence.Result Count') }} 
+                        (107,490 {{ trans('sentence.Result') }})</li>
                 </ul>
             </div>
         </div>
@@ -33,10 +30,10 @@
     <!-- /container -->
 </div>
 <!-- /BREADCRUMB -->
-@include('site.products.demo1')
-@include('site.products.demo1')
-@include('site.products.demo1')
-@include('site.products.demo1')
-@include('site.products.demo1')
+@include('site.category.demo1')
+@include('site.category.demo1')
+@include('site.category.demo1')
+@include('site.category.demo1')
+@include('site.category.demo1')
 
 @endsection

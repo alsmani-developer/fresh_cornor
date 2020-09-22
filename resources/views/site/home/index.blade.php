@@ -9,6 +9,7 @@
         }
 @endphp
  @include('site.home.category')
+ 
  @include('site.home.demo1')
  @include('site.home.demo2')
 @endsection

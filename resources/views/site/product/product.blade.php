@@ -81,7 +81,7 @@
                     <span class="qty-down">-</span>
                 </div>
             </div>
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> 
+            <button class="add-to-cart-btn rtl-float-left"><i class="fa fa-shopping-cart"></i> 
             {{ trans('sentence.add to cart') }}
             </button>
         </div>

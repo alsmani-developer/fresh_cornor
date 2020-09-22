@@ -1,15 +1,3 @@
-@php
-    if (session()->has('locale')) {
-            App::setLocale(session()->get('locale'));
-        }
-@endphp
-@php $locale = session()->get('locale'); 
-if (empty($locale)) {
-    $locale = 'ar';
-}else{
-    $locale = session()->get('locale');    
-}
-@endphp
 <!doctype html>
 <html lang="{{ $locale }}">
 <head>
@@ -33,3 +21,4 @@ if (empty($locale)) {
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="{{config('app.name')}}">
     <meta name="theme-color" content="#191A21">
+    <script src="{{ asset('js/site/jquery.min.js') }}"></script>

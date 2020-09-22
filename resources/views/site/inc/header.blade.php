@@ -9,6 +9,23 @@
                 <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
             </ul>
             <ul class="header-links pull-right">
+                @if (!Auth::check())
+                <li><a href="/login"><i class="fa fa-user-o"></i> 
+                    {{ trans('sentence.Login')}}
+                </a></li>
+                <li><a href="/register"><i class="fa fa-registered"></i> 
+                    {{ trans('sentence.Register')}}
+                </a></li>
+                    @else 
+                    <li class="rtl-text-right mr-3"><a href="/logout">
+                        <i class="fa fa-sign-out"></i>
+                        {{ trans('sentence.LogOut')}}
+                    </a></li>
+                    <li><a href="/profile">
+                        {{ trans('sentence.Profile')}}
+                        <img src="{{ asset('profile/defualt.png') }}" alt="{{ Auth::user()->name }}" width="20" height="20">
+                    </a></li>
+                    @endif
                 <li><a href="/change-lang/eng">
                     English
                     </a>
@@ -18,12 +35,6 @@
                     العربية
                     </a>
                 </li> 
-                <li><a href="/login"><i class="fa fa-user-o"></i> 
-                    {{ trans('sentence.Login')}}
-                </a></li>
-                <li><a href="/register"><i class="fa fa-registered"></i> 
-                    {{ trans('sentence.Register')}}
-                </a></li>
             </ul>
         </div>
     </div>
@@ -36,9 +47,9 @@
             <!-- row -->
             <div class="row">
                 <!-- LOGO -->
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="header-logo">
-                        <a href="#" class="logo text-light">
+                        <a href="/" class="logo text-light">
                             <h3 class="text-light">
                                <span class="text-red">F</span>resh <span class="text-red">C</span>ornor
                             </h3>
@@ -55,8 +66,19 @@
                                 <option value="0">
                                     {{ trans('sentence.All Categories') }}
                                 </option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                @if ($locale == 'ar')
+                                    @foreach ($CattlesType as $CattleType)
+                                    <option value="{{ $CattleType->id }}">
+                                        {{ $CattleType->ar_name }}
+                                    </option>
+                                    @endforeach
+                                    @else
+                                    @foreach ($CattlesType as $CattleType)
+                                    <option value="{{ $CattleType->id }}">
+                                        {{ $CattleType->en_name }}
+                                    </option>
+                                    @endforeach
+                                @endif
                             </select>
                             <input class="input" placeholder="{{ trans('sentence.Search Here')}}">
                             <button class="search-btn">
@@ -68,8 +90,52 @@
                 <!-- /SEARCH BAR -->
 
                 <!-- ACCOUNT -->
-                <div class="col-md-3 clearfix">
+                <div class="col-md-4 clearfix">
                     <div class="header-ctn">
+                         <!-- Notification -->
+                         <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-exclamation-circle "></i>
+                                <span>
+                                    {{ trans('sentence.Notification')}}
+                                </span>
+                                <div class="qty">3</div>
+                            </a>
+                            <div class="cart-dropdown">
+                                <div class="cart-list">
+                                    <div class="product-widget">
+                                        <div class="product-img">
+                                            <img src="./img/product01.png" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                        </div>
+                                        <button class="delete"><i class="fa fa-close"></i></button>
+                                    </div>
+
+                                    <div class="product-widget">
+                                        <div class="product-img">
+                                            <img src="./img/product02.png" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                        </div>
+                                        <button class="delete"><i class="fa fa-close"></i></button>
+                                    </div>
+                                </div>
+                                <div class="cart-summary">
+                                    <small>3 Item(s) selected</small>
+                                    <h5>SUBTOTAL: $2940.00</h5>
+                                </div>
+                                <div class="cart-btns">
+                                    <a href="#">View Cart</a>
+                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Notification -->
                         <!-- Wishlist -->
                         <div>
                             <a href="#">

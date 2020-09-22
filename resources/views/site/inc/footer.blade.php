@@ -27,15 +27,19 @@
                             {{ trans('sentence.All Categories') }}
                         </h3>
                         <ul class="footer-links">
-                            <li><a href="#">
-                                {{ trans('sentence.Beef') }}    
-                            </a></li>
-                            <li><a href="#">
-                                {{ trans('sentence.Goat meat') }} 
-                            </a></li>
-                            <li><a href="#">
-                                {{ trans('sentence.Mutton') }} 
-                            </a></li>
+                            @if ($locale == 'ar')
+                                    @foreach ($CattlesType as $CattleType)
+                                    <li><a href="/category/{{ $CattleType->ar_name }}">
+                                        {{ $CattleType->ar_name }}
+                                    </a></li>
+                                    @endforeach
+                                    @else
+                                    @foreach ($CattlesType as $CattleType)
+                                    <li><a href="/category/{{ $CattleType->en_name }}">
+                                        {{ $CattleType->en_name }}
+                                    </a></li>
+                                    @endforeach
+                                @endif
                         </ul>
                     </div>
                 </div>
@@ -118,7 +122,6 @@
 
 
 <!-- jQuery Plugins -->
-<script src="{{ asset('js/site/jquery.min.js') }}"></script>
 <script src="{{ asset('js/site/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/site/slick.min.js') }}"></script>
 <script src="{{ asset('js/site/nouislider.min.js') }}"></script>

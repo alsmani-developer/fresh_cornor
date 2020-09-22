@@ -13,13 +13,18 @@ use App\Package;
 |
 */
 
-Route::get('/', 'Site\HomeController@index');
+Route::get('/', 'Site\HomeController@index')->name('homepage');
 Route::get('/change-lang/{val}', 'Site\HomeController@changeLanguage');
 Route::get('/product', 'Site\ProductController@show');
 Route::get('/products', 'Site\ProductController@index');
+Route::get('/category/{type}', 'Site\ProductController@category');
 Route::get('/login', 'Site\UserController@login')->name('login');
+Route::post('/login', 'Site\UserController@loginUser')->name('loginUser');
 Route::get('/register', 'Site\UserController@register')->name('register');
-
+Route::post('/register', 'Site\UserController@registerUserFirstStep')->name('registerUser');
+// Route::post('/registerUserLastStep', 'Site\UserController@registerUserLastStep')->name('registerUserLastStep');
+Route::get('/ajax/register-new-user-last-step', 'Site\UserController@registerUserLastStep');
+Route::get('/logout', 'Site\UserController@logout');
 Route::get('manege_types',function(){
     return view('vendor.multiauth.admin.pages.type');
 })->name('types');

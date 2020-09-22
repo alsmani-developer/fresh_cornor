@@ -53,5 +53,16 @@ return [
   'Password' => 'Password',
   'Forget Password' => 'Forget Password??',
   'Remember Me' => 'Remember Me',
-
+  'Username' => 'Username',
+  'Email' => 'Email',
+  'Address' => 'Address',
+  'Notification' => 'Notification',
+  'Result Count' => 'Result Count',
+  'Result' => 'Result',
+  'invalid credentials' => ' Oppes! You have entered invalid credentials',
+  'validation number' => 'validation number',
+  'Enter' => 'Enter',
+  'validation sent' => 'validation number has been sent to your phone',
+  'Profile' => 'Profile',
+  'LogOut' => 'LogOut',
 ];

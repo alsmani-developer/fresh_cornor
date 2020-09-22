@@ -8,6 +8,9 @@
 .rtl-text-left{
     text-align: left;
 }
+.rtl-float-left{
+    float: left;
+}
 .mr-30{
     margin-right: 30px;
 }
@@ -83,9 +86,6 @@
 }
 .add-to-cart{
     direction: rtl;
-}
-.add-to-cart-btn{
-    float: left;
 }
 .product-details .add-to-cart .qty-label .input-number{
     width: 160px;

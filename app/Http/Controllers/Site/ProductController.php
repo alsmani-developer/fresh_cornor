@@ -13,4 +13,7 @@ class ProductController extends BaseController
     public function index(){
         return view('site.products.index');
     }
+    public function category($type){
+        return view('site.category.index');
+    }
 }

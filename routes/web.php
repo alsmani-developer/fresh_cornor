@@ -19,6 +19,10 @@ Route::get('manege_types',function(){
     return view('vendor.multiauth.admin.pages.type');
 })->name('types');
 
+Route::get('manege_meat',function(){
+    return view('vendor.multiauth.admin.pages.meats');
+})->name('meats'); 
+
 Route::get('manege_cattle_origin',function(){
     return view('vendor.multiauth.admin.pages.cattle_origin');
 })->name('origin');
@@ -30,3 +34,11 @@ Route::get('manege_meat_shape',function(){
 Route::get('manege_meate_aera',function(){
     return view('vendor.multiauth.admin.pages.meate_area');
 })->name('meat_aera');
+
+Route::get('manege_discounts',function(){
+    return view('vendor.multiauth.admin.pages.discounts');
+})->name('discounts');
+
+Route::get('manege_orders',function(){
+    return view('vendor.multiauth.admin.pages.orders');
+})->name('orders');

@@ -168,28 +168,24 @@
 
         createorigin(){
             this.form.post(this.routes.post)
-                .then( response=> {
-                   
-                   
+                .then(response=>{
 
-                        Success.fire({
-                            icon: response.data.status,
+                   Success.fire({
+                            icon:response.data.status,
                             title:response.data.title
                         })
 
-                       if(response.data.status =='success'){
-                          this.loadorigins()
-                          $('#addNew').modal('hide');
-                       }
-                          
+                    
+
+                   if(response.data.status =='success'){
+                     $('#addNew').modal('hide');
+                     this.loadorigins()
+                   }
                         
-
-                })
-                .catch(() => {
-                   console.log("Error......")
-                })
-
-     
+               })
+               .catch(()=>{
+                  console.log("Error.....")
+               })
 
             //this.loadorigins();
           },

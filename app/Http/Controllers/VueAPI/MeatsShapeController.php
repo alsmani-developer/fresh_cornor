@@ -16,7 +16,7 @@ class MeatsShapeController extends Controller
      */
     public function index()
     {
-        $query = MeatsShape::orderBy('meat_shape_no', 'DESC')->paginate(10);
+        $query = MeatsShape::orderBy('id', 'DESC')->paginate(10);
         return  response()->json( $query);
     }
 

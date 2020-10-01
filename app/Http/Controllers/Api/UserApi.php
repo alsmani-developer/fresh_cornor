@@ -161,6 +161,9 @@ class UserApi extends APIController
       
       
     }
+    public function getCode(){
+        return response()->json('code',1111);
+    }
      public function resetPassword(Request $request){
         try{
             if($request->code){

@@ -31,13 +31,13 @@
                    
 
                     <td>
-                        <a href="#" data-id="shape.id" @click="editModalWindow(shape)">
-                            <i class="fa fa-edit blue"></i>
-                        </a>
-                        |
-                        <a href="#" @click="deleteshape(shape.id)">
+                        <button class="btn-primary" data-id="shape.id"  @click="editModalWindow(shape)" >
+                            <i class="fa fa-pen"></i>
+                        </button>
+                        
+                        <button class="btn-danger"  @click="deleteshape(shape.id)">
                             <i class="fa fa-trash red"></i>
-                        </a>
+                        </button>
 
                     </td>
                   </tr>
@@ -244,6 +244,14 @@
     }
     #text{
         text-align: center;
+    }
+    .edit-tag{
+      color: #ffbb33;
+      margin:10px
+    }
+    .delete-tag {
+      color: #ff4444;
+      margin:10px;
     }
 
 </style>

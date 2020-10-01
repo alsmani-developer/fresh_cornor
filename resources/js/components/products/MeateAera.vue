@@ -31,13 +31,13 @@
                    
 
                     <td>
-                        <a href="#" data-id="aera.id" @click="editModalWindow(aera)">
+                        <button class="btn-primary" data-id="aera.id" @click="editModalWindow(aera)">
                             <i class="fa fa-edit blue"></i>
-                        </a>
+                        </button>
                         |
-                        <a href="#" @click="deleteaera(aera.id)">
+                        <button class="btn-danger"  @click="deleteaera(aera.id)">
                             <i class="fa fa-trash red"></i>
-                        </a>
+                        </button>
 
                     </td>
                   </tr>
@@ -178,8 +178,9 @@
                         })
 
                        if(response.data.status =='success'){
-                          this.loadaeras()
+                         
                           $('#addNew').modal('hide');
+                           this.loadaeras()
                        }
                           
                         

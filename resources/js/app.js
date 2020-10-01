@@ -31,10 +31,14 @@ window.Success=Success;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 //products cluster vues component
 Vue.component('type-component', require('./components/products/Types.vue').default);
+Vue.component('orders-component', require('./components/products/Orders.vue').default);
 Vue.component('origin-component', require('./components/products/Origin.vue').default);
 Vue.component('meate-shape', require('./components/products/MwateShpe.vue').default);
 Vue.component('meate-aera', require('./components/products/MeateAera.vue').default);
+Vue.component('meat-component', require('./components/products/Meats.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
+//Discount component
+Vue.component('discount-component', require('./components/discount/Discount.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

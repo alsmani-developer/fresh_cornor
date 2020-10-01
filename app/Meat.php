@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meat extends Model
 {
+    public $timestamps = false;
     protected $guarded=[];
     public function cattlesType(){
     	return $this->belongsTo('App\CattlesType', 'cattels_types_id');
@@ -13,4 +14,17 @@ class Meat extends Model
     public function stock(){
     	return $this->hasOne('App\Stocks', 'meat_id');
     }
+    public function meatsratings(){
+    	return $this->hasMany('App\MeatsRating', 'meat_id');
+    }
+    public function discount_meat(){
+    	return $this->hasMany('App\DiscountsMeat', 'meat_id');
+    }
+    public function meatsrating(){
+    	return $this->hasMany('App\MeatsRating', 'meat_id');
+    }
+    public function OrdersMeat(){
+    	return $this->hasMany('App\OrdersMeat', 'meat_id');
+    }
+
 }

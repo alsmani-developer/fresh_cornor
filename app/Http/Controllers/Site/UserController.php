@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use App\User;
+use App\UserFavorite;
+
 class UserController extends Controller
 {
     // show login form
@@ -76,5 +78,39 @@ class UserController extends Controller
     public function logout(Request $request) {
         Auth::logout();
         return redirect('/login');
+      }
+      public function getOrders()
+      {
+          $orders = auth()->user()->orders;
+  
+          return view('site.user.orders', compact('orders'));
+      }
+      public function getUser(){
+
+          $user = Auth::user();
+          return view('site.user.show', compact('user'));
+      }
+      public function addToFav($product_id){
+        if(Auth::check()){
+            $user = Auth::user()->id;
+            $checkFav = UserFavorite::where(['meat_id' => $product_id, 'user_id' => $user])->first();
+            if(!$checkFav){
+                $save = UserFavorite::create([
+                    'user_id' => $user,
+                    'meat_id' => $product_id
+                ]);
+            return redirect()->back()->withSuccess('تم إضافة المنتج الى مفضلتك بنجاح');
+            }else{
+                return redirect()->back()->withError('المنتج متواجد بالفعل في مفضلتك');
+            }
+        }else{
+            return redirect()->back()->withError('يجب ان تكون مسجلا لكي تتمكن من اضافة منتج للمفضلة');
+        }
+      }
+      public function removeFromFav($product_id){
+        $user = Auth::user()->id;
+        $checkFav = UserFavorite::where(['meat_id' => $product_id, 'user_id' => $user])->first();
+        $checkFav->delete();
+        return redirect()->back()->withSuccess('تمت ازالة المنتج من المفضلة بنجاح.');
       }
 }

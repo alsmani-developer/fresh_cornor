@@ -1,15 +1,10 @@
 @extends('site.layouts.app')
 @section('page-title')
-    Fresh Cornor Product Page
+    {{ $locale == 'ar' ? $get_meat->ar_name : $get_meat->en_name }}
 @endsection
 @section('content')
-@php
-    if (session()->has('locale')) {
-            App::setLocale(session()->get('locale'));
-        }
-@endphp
 @include('site.product.header')
 @include('site.product.product')
-@include('site.product.details')
+{{-- @include('site.product.details') --}}
 @include('site.product.related')
 @endsection

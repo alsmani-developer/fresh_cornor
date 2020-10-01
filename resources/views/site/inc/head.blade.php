@@ -22,3 +22,4 @@
 	<meta property="og:site_name" content="{{config('app.name')}}">
     <meta name="theme-color" content="#191A21">
     <script src="{{ asset('js/site/jquery.min.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">

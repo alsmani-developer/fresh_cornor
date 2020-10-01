@@ -1,13 +1,8 @@
 @extends('site.layouts.app')
 @section('page-title')
-    Fresh Cornor Products Page
+    {{ $locale == 'ar' ? 'كل المنتجات ' : 'All Products '}}
 @endsection
 @section('content')
-@php
-    if (session()->has('locale')) {
-            App::setLocale(session()->get('locale'));
-        }
-@endphp
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section rtl-text-right">
     <!-- container -->
@@ -18,13 +13,12 @@
                 <ul class="breadcrumb-tree">
                     <li><a href="/">{{ trans('sentence.Home Page') }}</a></li>
                     <li><a href="/products">{{ trans('sentence.All Categories') }}</a></li>
-                    <li><a href="/category/beef">
-                        {{ trans('sentence.Beef') }}</a></li>
-                        <li><a href="/category/mutton">
-                            {{ trans('sentence.Mutton') }}</a></li>
-                            <li><a href="/category/goat-meat'">
-                                {{ trans('sentence.Goat meat') }}</a></li>
-                    <li class="active">{{ trans('sentence.Result Count') }} (227,490 {{ trans('sentence.Result') }})</li>
+                    @forelse ($get_cats as $get_cat)
+                    <li><a href="/category/{{ $get_cat->id }}">
+                        {{ $locale === 'ar' ? $get_cat->ar_name : $get_cat->en_name }}
+                        </a></li>
+                    @empty
+                    @endforelse
                 </ul>
             </div>
         </div>
@@ -33,10 +27,6 @@
     <!-- /container -->
 </div>
 <!-- /BREADCRUMB -->
-@include('site.products.demo1')
-@include('site.products.demo1')
-@include('site.products.demo1')
-@include('site.products.demo1')
 @include('site.products.demo1')
 
 @endsection

@@ -7,9 +7,13 @@
 }
 .rtl-text-left{
     text-align: left;
+    direction: rtl;
 }
 .rtl-float-left{
     float: left;
+}
+.rtl-float-right{
+    float: right;
 }
 .mr-30{
     margin-right: 30px;
@@ -88,8 +92,19 @@
     direction: rtl;
 }
 .product-details .add-to-cart .qty-label .input-number{
-    width: 160px;
+    width: 130px;
 }
 .rtl-float-left{
     float: left !important;
 }
+.shop .shop-body .cta-btn {
+    position: relative;
+    bottom: 0;
+  }
+  .shop .shop-body{
+      padding: 24px;
+  }
+  .adv_search_btn{
+    float: left;
+    margin-left: 58px;
+  }

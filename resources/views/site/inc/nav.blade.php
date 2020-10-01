@@ -15,12 +15,13 @@
                         {{ trans('sentence.All Products') }}    
                         </a>
                         </li>
-                    <li class="{{ Request::segment(1) === 'hot-deals' ? 'active ' : null }}"><a href="#">
-                        {{ trans('sentence.Hot Deals') }}    
+                    <li class="{{ Request::segment(1) === 'discounts' ? 'active ' : null }}">
+                        <a href="/discounts">
+                        {{ trans('sentence.Discount And Offers') }}    
                     </a></li>
                     @foreach ($CattlesType as $CattleType)
-                    <li class="{{ Request::segment(2) === $CattleType->en_name ? 'active ' : null }}">
-                        <a href="/category/{{ $CattleType->en_name }}">
+                    <li class="{{ Request::segment(2) === $CattleType->id ? 'active ' : null }}">
+                        <a href="/category/{{ $CattleType->id }}">
                             {{ $CattleType->en_name }}
                         </a>
                     </li>
@@ -44,14 +45,15 @@
                         </a>
                         </li>
                         @foreach ($CattlesType as $CattleType)
-                        <li class="{{ Request::segment(2) === $CattleType->ar_name ? 'active ' : null }}">
-                            <a href="/category/{{ $CattleType->ar_name }}">
+                        <li class="{{ Request::segment(2) === $CattleType->id ? 'active ' : null }}">
+                            <a href="/category/{{ $CattleType->id }}">
                                 {{ $CattleType->ar_name }}
                             </a>
                         </li>
                         @endforeach
-                        <li><a href="">
-                            {{ trans('sentence.Hot Deals') }}    
+                        <li class="{{ Request::segment(1) === 'discounts' ? 'active ' : null }}">
+                            <a href="/discounts">
+                            {{ trans('sentence.Discount And Offers') }}    
                         </a></li>
                         <li class="{{ Request::segment(1) === 'products' ? 'active ' : null }}"><a href="/products">
                             {{ trans('sentence.All Products') }}    

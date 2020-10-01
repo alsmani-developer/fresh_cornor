@@ -48,7 +48,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="product-body">
+                                    <div class="product-body" title="">
                                         <p class="product-category">{{ trans('sentence.Beef') }}</p>
                                         <h3 class="product-name">
                                             <a href="/product/{{ $get_meat->id }}">

@@ -15,7 +15,7 @@ class CattleOriginController extends Controller
      */
     public function index()
     {
-        $query = CattlesOrigin::orderBy('origin_no', 'DESC')->paginate(10);
+        $query = CattlesOrigin::orderBy('id', 'DESC')->paginate(10);
         return  response()->json( $query);
     }
 

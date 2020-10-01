@@ -14,11 +14,15 @@ use Illuminate\Http\Request;
 
 class OrderApi extends APIController
 {
+    public function getAllOrders(){
+        $query = Order::orderBy('id', 'DESC')->paginate(10);
+        return  response()->json($query);
+    }
     public function getUserOrder(User $user){
         if($user !=null){
-
+            
             $orders = $user->orders;
-            $this->getResponce( $orders );
+            return $this->getResponce( $orders );
 
         }else  return response()->json([
             'success' => false,
@@ -86,7 +90,7 @@ class OrderApi extends APIController
         $discounts = Discount::take($request->limit)->get();
 
         return response()->json([
-            'success'   =>  true,
+           
             'data'=>$discounts
         ], 200);
 
@@ -97,6 +101,12 @@ class OrderApi extends APIController
         return response()->json([
             'success'   =>  true,
             'data'=>$meats
+        ], 200);
+    }
+    public function getMeat(Meat $meat){
+
+        return response()->json([
+            'data'=>$meat
         ], 200);
     }
 }

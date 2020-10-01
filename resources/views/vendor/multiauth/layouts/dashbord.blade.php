@@ -162,13 +162,41 @@ td, th{
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item">
+               
+              <li class="nav-item has-treeview ">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>  الطلبات </p>
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                  اداره الطلبات
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  <a href="{{route('orders')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>  الطلبات </p>
+                    </a>
+                  </li>
+                </ul>
               </li>
-
+              <li class="nav-item has-treeview ">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                  اداره التخفيضات
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{route('discounts')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>  التخفيضات</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
              
 
               <li class="nav-item has-treeview ">
@@ -181,7 +209,7 @@ td, th{
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <a href="{{route('meats')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>  المنتج</p>
                     </a>
@@ -326,7 +354,7 @@ td, th{
 <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+  
 </script>
 <!-- Bootstrap 4 rtl -->
 <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"></script>
@@ -357,9 +385,5 @@ td, th{
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 
-<!-- DataTables -->
-
-
-<script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
 </body>
 </html>

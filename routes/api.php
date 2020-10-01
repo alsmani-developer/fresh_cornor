@@ -58,7 +58,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('get_orders','Api\OrderApi@getAllOrders')->name('get_orders');
-
+Route::get('get_users','Api\UserApi@getAllUsers')->name('get_users');
 //user routes 
 Route::post('login', 'Api\UserApi@login');
 Route::post('verfy','Api\UserApi@verfyPhoneNumber');

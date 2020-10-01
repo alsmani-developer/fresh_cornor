@@ -52,3 +52,7 @@ Route::get('manege_discounts',function(){
 Route::get('manege_orders',function(){
     return view('vendor.multiauth.admin.pages.orders');
 })->name('orders');
+
+Route::get('manege_users',function(){
+    return view('vendor.multiauth.admin.pages.users');
+})->name('users');

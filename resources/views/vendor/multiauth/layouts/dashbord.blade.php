@@ -55,6 +55,7 @@
 
 body {
   font-family: 'Cairo', sans-serif;
+  
 }
 
 table {
@@ -83,7 +84,7 @@ td, th{
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" ><i class="fas fa-bars"></i></a>
       </li>
      
     </ul>
@@ -146,14 +147,14 @@ td, th{
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar" style="color: white">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{asset('dist/img/defalutUser.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{auth('admin')->user()->name}} </a>
+          <a  class="d-block">{{auth('admin')->user()->name}} </a>
         </div>
       </div>
 
@@ -164,7 +165,7 @@ td, th{
                with font-awesome or any other icon font library -->
                
               <li class="nav-item has-treeview ">
-                <a href="#" class="nav-link">
+                <a  class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                   اداره الطلبات
@@ -181,7 +182,7 @@ td, th{
                 </ul>
               </li>
               <li class="nav-item has-treeview ">
-                <a href="#" class="nav-link">
+                <a  class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                   اداره التخفيضات
@@ -198,9 +199,10 @@ td, th{
                 </ul>
               </li>
              
+              
 
               <li class="nav-item has-treeview ">
-                <a href="#" class="nav-link">
+                <a  class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                   اداره المنتجات
@@ -253,9 +255,25 @@ td, th{
                         </ul>
   
               </li>
-
               <li class="nav-item has-treeview ">
-                <a href="#" class="nav-link">
+                <a  class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                  اداره المستخدمين
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{route('users')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>  المستخدمين</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item has-treeview ">
+                <a  class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                   الاعدادات العامه
@@ -303,8 +321,8 @@ td, th{
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a href="#">Library</a></li>
+    <!-- <li class="breadcrumb-item"><a >Home</a></li>
+    <li class="breadcrumb-item"><a >Library</a></li>
     <li class="breadcrumb-item active" aria-current="page">Data</li> -->
   </ol>
 </nav>
@@ -336,7 +354,7 @@ td, th{
   <!-- /.content-wrapper -->
   <footer class="main-footer">
   <center>
-    <strong>Copyright &copy; 2020 <a href="#">Dr. Spare</a>. </strong>
+    <strong>Copyright &copy; 2020 <a >Dr. Spare</a>. </strong>
     All rights reserved. Designed By  <a  class="txt1" href="https://citysoftech.net" style="font-family:algerian;" target="_blank">City Soft  </a>
    </center>
   </footer>

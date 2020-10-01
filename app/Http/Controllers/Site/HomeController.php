@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-
-class HomeController extends Controller
+use App\Meat;
+class HomeController extends BaseController
 {
     public function index(){
-        return 'hey';
+        $get_meats = Meat::orderByDesc('id')->take(8)->get();
+
+        $data = array('get_meats' => $get_meats);
+        return view('site.home.index')->with($data);
     }
 }

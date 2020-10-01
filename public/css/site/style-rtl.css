@@ -1,0 +1,95 @@
+.rtl-text-right{
+    text-align: right;
+    direction: rtl;
+}
+.rtl-text-center{
+    text-align: center;
+}
+.rtl-text-left{
+    text-align: left;
+}
+.rtl-float-left{
+    float: left;
+}
+.mr-30{
+    margin-right: 30px;
+}
+.mt-1{
+    margin-top: 10px;
+}
+.mt-2{
+    margin-top: 20px;
+}
+.mt-3{
+    margin-top: 30px;
+}
+.mt-4{
+    margin-top: 40px;
+}
+.header-search {
+    text-align: right;
+}
+
+.header-search form .input {
+    text-align: right;
+}
+
+.input-select {
+    direction: rtl;
+}
+
+.navbar-nav {
+    float: right;
+    direction: rtl;
+}
+
+.shop::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    width: 45%;
+}
+
+.shop::after {
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    transform: skewX(-45deg) translateX(100%);
+}
+
+.shop .shop-body {
+    top: auto;
+    bottom: 10px;
+    right: 0;
+    text-align: right;
+}
+.section-title{
+    text-align: center;
+}
+.footer .footer-links{
+    text-align: center;
+}
+.footer .footer-title{
+    text-align: center;
+}
+.footer .footer-links-main{
+    text-align: left;
+}
+.product-details{
+    text-align: right;
+}
+.product-links{
+    direction: rtl;
+}
+.add-to-cart{
+    direction: rtl;
+}
+.product-details .add-to-cart .qty-label .input-number{
+    width: 160px;
+}
+.rtl-float-left{
+    float: left !important;
+}

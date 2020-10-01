@@ -39,6 +39,7 @@
                     @endif
                     <i class="fa fa-star {{ $color }}"></i>
                 @endfor
+                <hr class="primary-divider"/>
             </div>
             <a class="review-link" dir="rtl"> 
                 {{ trans('sentence.ratings count') }}  {{ $get_meat->meatsratings->count() }}
@@ -46,10 +47,10 @@
                  {{ $locale === 'ar' ? $get_meat->cattlesType->ar_name : 
                  $get_meat->cattlesType->en_name }}
         </div>
-        <div class="rtl-text-right">
+        <div class="rtl-text-right pb-10">
             <h3 class="product-price rtl-text-right text-success">
                 @isset($get_meat->discount_meat->last()->discount->amount)
-                <del class="text-divider">
+                <del class="text-divider old-price">
                     {{ $get_meat->stock->price }}
                     <span class="float-left">
                         {{ trans('sentence.Rial  For KG') }}

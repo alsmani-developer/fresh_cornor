@@ -52,7 +52,6 @@ Route::get('manege_meat_shape',function(){
 Route::get('manege_meate_aera',function(){
     return view('vendor.multiauth.admin.pages.meate_area');
 })->name('meat_aera');
-<<<<<<< HEAD
 Route::post('/add-to-cart', 'Site\ProductController@addToCart');
 Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
 Route::get('/cart/item/{id}/remove', 'Site\CartController@removeItem')->name('checkout.cart.remove');
@@ -64,7 +63,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');
     Route::get('/account/orders', 'Site\UserController@getOrders')->name('account.orders');
 });
-=======
 
 Route::get('manege_discounts',function(){
     return view('vendor.multiauth.admin.pages.discounts');
@@ -73,4 +71,3 @@ Route::get('manege_discounts',function(){
 Route::get('manege_orders',function(){
     return view('vendor.multiauth.admin.pages.orders');
 })->name('orders');
->>>>>>> d7b7e2e7336ca76e2a5eea2ee3c3fec239dabc48

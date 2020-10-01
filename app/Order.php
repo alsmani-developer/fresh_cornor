@@ -13,6 +13,11 @@ class Order extends Model
     {
         return $this->belongsTo('App\User');
     }
-    
-
+    public function ordersMeats()
+    {
+        return $this->hasMany(OrdersMeat::class);
+    }
+    public  function status(){
+        return $this->belongsTo(Status::class);
+    }
 }

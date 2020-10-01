@@ -1,6 +1,6 @@
 
     <!-- container -->
-    <div class="container">
+    <div class="container mb-4">
         <!-- row -->
         <div class="row">
 
@@ -10,14 +10,6 @@
                     <h3 class="title">
                         {{ trans('sentence.Related Products') }}
                     </h3>
-                    {{-- <div class="section-nav">
-                        <ul class="section-tab-nav tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-                            <li><a data-toggle="tab" href="#tab1">Accessories</a></li>
-                        </ul>
-                    </div> --}}
                 </div>
             </div>
             <!-- /section title -->
@@ -29,175 +21,120 @@
                         <!-- tab -->
                         <div id="tab1" class="tab-pane active">
                             <div class="products-slick" data-nav="#slick-nav-1">
-                                <!-- product -->
+                                @forelse ($relatedMeats as $relatedMeat)
+                                    <!-- product -->
                                 <div class="product">
+                                    <a href="/product/{{ $relatedMeat->id }}"
+                                        title="{{ $locale === 'ar' ? $relatedMeat->cattlesType->ar_name : 
+                                        $relatedMeat->cattlesType->en_name }}">
                                     <div class="product-img">
-                                        <img src="{{ asset('images/meat3.webp') }}" alt="">
+                                        <img src="{{ asset('images/'.$relatedMeat->pic) }}" 
+                                        alt="{{ $relatedMeat->ar_name }}">
+                                        @isset($relatedMeat->discount_meat->last()->discount->amount)
                                         <div class="product-label">
-                                            <span class="sale">-30%</span>
                                             <span class="new">
-                                                {{ trans('sentence.NEW') }}
+                                                {{ $relatedMeat->discount_meat->last()->discount->amount }}%
                                             </span>
                                         </div>
+                                        @endisset
                                         <div class="product-label-contity">
                                             <span class="available">
-                                                {{ trans('sentence.Available') }}
+                                                {{ $relatedMeat->stock->quantity > 0 ? 
+                                                    trans('sentence.Available')  : 
+                                                    trans('sentence.Not Available') }}
                                             </span>
                                         </div>
                                     </div>
+                                    </a>
                                     <div class="product-body">
-                                        <p class="product-category">{{ trans('sentence.Beef') }}</p>
-                                        <h3 class="product-name"><a href="/product">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                                        <p class="product-category">
+                                            {{ $locale === 'ar' ? $relatedMeat->cattlesType->ar_name : 
+                                                $relatedMeat->cattlesType->en_name }}
+                                        </p>
+                                        <h3 class="product-name">
+                                            <a href="/product/{{ $relatedMeat->id }}">
+                                            {{ $locale === 'ar' ? $relatedMeat->ar_name : $relatedMeat->en_name }}
+                                        </a></h3>
+                                        @isset($relatedMeat->discount_meat->last()->discount->amount)
+                                        <h4 class="product-price" dir="{{ $locale === 'ar' ? 'rtl' : 'ltl' }}"> 
+                                            <del class="text-divider">
+                                                {{ $relatedMeat->stock->price }}
+                                            <span class="float-left">
+                                                {{ trans('sentence.Rial  For KG') }}
+                                            </span>
+                                            
+                                            </del> <br>
+                                            </h4>
+                                            <h4 class="product-price text-success" dir="{{ $locale === 'ar' ? 'rtl' : 'ltl' }}">
+                                            {{  $relatedMeat->stock->price - $relatedMeat->discount_meat->last()->discount->amount / 
+                                                ($relatedMeat->stock->price * 100) }}
+                                             <span class="float-left"> 
+                                                {{ trans('sentence.Rial  For KG') }}
+                                             </span>
+                                            </h4>
+                                            @else 
+                                            <h4 class="product-price text-success" dir="{{ $locale === 'ar' ? 'rtl' : 'ltl' }}"> 
+                                                {{ $relatedMeat->stock->price }}
+                                                <span class="float-left">
+                                                    {{ trans('sentence.Rial  For KG') }}
+                                                </span>
+                                                </h4>
+                                            @endisset
                                         <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
+                                            @for ($i = 1; $i <= 5; $i++)
+                                            @if($i <= round($relatedMeat->meatsrating->avg('ratting')))
+                                                @php
+                                                $color = 'text-danger';
+                                                @endphp
+                                                @else
+                                                @php
+                                                $color = 'text-divider';
+                                                @endphp
+                                                @endif
+                                                <i class="fa fa-star {{ $color }}"></i>
+                                            @endfor
                                         </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">
-                                                {{ trans('sentence.add to wishlist') }}</span></button>
-                                            {{-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> --}}
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">
-                                                {{ trans('sentence.view') }}</span></button>
+                                        <form class="product-btns" action="{{ route('addToFav', $relatedMeat->id) }}"
+                                            method="POST">
+                                            @csrf
+                                           <button class="add-to-wishlist" type="submit">
+                                               <i class="fa fa-heart-o"></i><span class="tooltipp">
+                                               {{ trans('sentence.add to wishlist') }}</span>
+                                           </button>
+                                       <button class="quick-view"><i class="fa fa-eye"></i>
+                                           <p class="tooltipp" dir="{{ $locale == 'ar' ? 'rtl' : 'ltl' }}"> 
+                                               {{ $relatedMeat->views }}
+                                               {{ trans('sentence.views') }}
+                                               </p>
+                                           </button>
+                                       </form>
+                                    </div>
+                                    {{-- <div class="add-to-cart">
+                                        <button class="add-to-cart-btn d-none" id="{{ $relatedMeat->id }}">
+                                            <i class="fa fa-shopping-cart"></i> 
+                                        {{ trans('sentence.add to cart') }}
+                                    </button>
+                                    <div class="qty-label pb-2">
+                                        {{ trans('sentence.Qty') }}
+                                        <div class="input-number w-50 d-inline">
+                                            <input type="number" placeholder="{{ trans('sentence.KG') }}" min="1"
+                                             max="{{ $get_meat->stock->quantity }}" name="qty">
                                         </div>
+                                        <button class="add-to-cart-btn w-50 d-inline" id="{{ $relatedMeat->id }}">
+                                            <i class="fa fa-shopping-cart"></i> 
+                                        {{ trans('sentence.add to cart') }}
+                                        </button>
                                     </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <!-- /product -->
-
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="{{ asset('images/meat1.webp') }}" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">-30%</span>
-                                            <span class="new">NEW</span>
-                                        </div>
-                                        <div class="product-label-contity">
-                                            <span class="not_available">Not Avilable</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
-
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="{{ asset('images/meat2.webp') }}" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">-30%</span>
-                                            <span class="new">NEW</span>
-                                        </div>
-                                        <div class="product-label-contity">
-                                            <span class="available">Avilable</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                        <div class="product-rating">
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
-
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="{{ asset('images/meat1.webp') }}" alt="">
-                                        <div class="product-label-contity">
-                                            <span class="not_available">Not Avilable</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
-
-                                <!-- product -->
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="{{ asset('images/meat2.webp') }}" alt="">
-                                        <div class="product-label-contity">
-                                            <span class="available">Avilable</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                    </div>
-                                </div>
-                                <!-- /product -->
+                                @empty
+                                    <h3 class="text-center">
+                                        لا توجد منتجات مشابهة
+                                    </h3>
+                                @endforelse
+                                
                             </div>
-                            <div id="slick-nav-1" class="products-slick-nav"></div>
                         </div>
                         <!-- /tab -->
                     </div>
@@ -208,3 +145,10 @@
         <!-- /row -->
     </div>
     <!-- /container -->
+<script>
+    $(document).ready(function(){
+        $(".add-to-cart-btn").on('click', function(){
+            console.log(this.id);
+        });
+    });
+</script>

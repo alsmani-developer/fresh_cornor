@@ -27,19 +27,11 @@
                             {{ trans('sentence.All Categories') }}
                         </h3>
                         <ul class="footer-links">
-                            @if ($locale == 'ar')
-                                    @foreach ($CattlesType as $CattleType)
-                                    <li><a href="/category/{{ $CattleType->ar_name }}">
-                                        {{ $CattleType->ar_name }}
-                                    </a></li>
-                                    @endforeach
-                                    @else
-                                    @foreach ($CattlesType as $CattleType)
-                                    <li><a href="/category/{{ $CattleType->en_name }}">
-                                        {{ $CattleType->en_name }}
-                                    </a></li>
-                                    @endforeach
-                                @endif
+                        @foreach ($CattlesType as $CattleType)
+                        <li><a href="/category/{{ $CattleType->id }}">
+                            {{ $locale == 'ar' ? $CattleType->ar_name : $CattleType->en_name }}
+                        </a></li>
+                        @endforeach
                         </ul>
                     </div>
                 </div>

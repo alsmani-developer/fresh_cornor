@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App;
 use App\CattlesType;
+use Cart;
 class ViewServiceProvider extends ServiceProvider
 {
     /**
@@ -41,6 +42,9 @@ class ViewServiceProvider extends ServiceProvider
                 $locale = session()->get('locale');    
             }
             $view->with('locale', $locale);
+        });
+        view()->composer('site.inc.header', function ($view) {
+            $view->with('cartCount', Cart::getContent()->count());
         });
     }
 }

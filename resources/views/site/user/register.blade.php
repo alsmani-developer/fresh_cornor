@@ -1,6 +1,6 @@
 @extends('site.layouts.app')
 @section('page-title')
-    Fresh Cornor Products Page
+    {{ trans('sentence.Register') }}
 @endsection
 @section('content')
 @php

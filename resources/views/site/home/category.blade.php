@@ -4,51 +4,41 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-            <!-- shop -->
-            <div class="col-md-4 col-xs-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('images/meat1.webp') }}" alt="{{ trans('sentence.Beef') }}" height="240">
-                    </div>
-                    <div class="shop-body">
-                        <h3>{{ trans('sentence.Beef') }}</h3>
-                        <a href="/category/{{ trans('sentence.Beef') }}" class="cta-btn"> 
-                            {{ trans('sentence.Shop Now') }} <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3 class="title">
+                        {{ trans('sentence.Discount And Offers') }}
+                    </h3>
                 </div>
             </div>
-            <!-- /shop -->
+            <!-- /section title -->
 
-            <!-- shop -->
-            <div class="col-md-4 col-xs-6">
+            @forelse ($discounts as $discount)
+                 <!-- shop -->
+            <div class="col-md-4 col-xs-6 rtl-float-right">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="{{ asset('images/meat2.webp') }}" alt="{{ trans('sentence.Goat meat') }}"
-                         height="240">
+                        <img src="{{ asset('images/'.$discount->pic) }}" 
+                        alt="{{ $locale === 'ar' ?  $discount->ar_name : $discount->en_name}}" height="240">
                     </div>
                     <div class="shop-body">
-                        <h3>{{ trans('sentence.Goat meat') }}</h3>
-                        <a href="/category/{{ trans('sentence.Goat meat') }}" class="cta-btn"> 
-                            {{ trans('sentence.Shop Now') }} <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3> 
+                            {{ $locale === 'ar' ?  $discount->ar_name : $discount->en_name}}
+                        </h3>
+                        <p class="text-light">
+                            {{ $locale === 'ar' ?  mb_substr($discount->ar_description, 0, 30) :
+                             mb_substr($discount->en_description, 0, 30) }}
+                        </p>
+                        <a href="/discount/{{ $discount->id }}" class="cta-btn"> 
+                            {{ trans('sentence.More') }} <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
             <!-- /shop -->
-
-            <!-- shop -->
-            <div class="col-md-4 col-xs-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('images/meat3.webp') }}" alt="{{ trans('sentence.Mutton') }}" height="240">
-                    </div>
-                    <div class="shop-body">
-                        <h3>{{ trans('sentence.Mutton') }}</h3>
-                        <a href="/category/{{ trans('sentence.Mutton') }}" class="cta-btn">
-                             {{ trans('sentence.Shop Now') }} <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <!-- /shop -->
+            @empty
+                
+            @endforelse
         </div>
         <!-- /row -->
     </div>

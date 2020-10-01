@@ -19,7 +19,10 @@ class UserApi extends APIController
    
    
 //////////////////////////////////functions for user /////////////////////////////////////////////////////
-    
+    public function getAllUsers(){
+        $query = User::orderBy('id', 'DESC')->paginate(10);
+        return  response()->json($query);
+    }
     //geting user guard
     public function guard()
     {

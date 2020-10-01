@@ -29,6 +29,7 @@ window.Success=Success;
     Vue.component(HasError.name, HasError)
     Vue.component(AlertError.name, AlertError)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('users-component', require('./components/Users.vue').default);
 //products cluster vues component
 Vue.component('type-component', require('./components/products/Types.vue').default);
 Vue.component('orders-component', require('./components/products/Orders.vue').default);

@@ -47,7 +47,7 @@
                  {{ $locale === 'ar' ? $get_meat->cattlesType->ar_name : 
                  $get_meat->cattlesType->en_name }}
         </div>
-        <div class="rtl-text-right pb-10">
+        <div class="rtl-text-right pb-20">
             <h3 class="product-price rtl-text-right text-success">
                 @isset($get_meat->discount_meat->last()->discount->amount)
                 <del class="text-divider old-price">
@@ -68,7 +68,7 @@
                
             </h3>
         </div>
-        <p>
+        <p class="pb-10">
            {{ $locale === 'ar' ? $get_meat->ar_description : 
            $get_meat->en_description }} 
         </p>
@@ -133,19 +133,10 @@
                 {{ trans('sentence.Category') }}: {{ $locale === 'ar' ?
                 $get_meat->cattlesType->ar_name : $get_meat->cattlesType->en_name }}</li>
         </ul>
-
-        {{-- <ul class="product-links">
-            <li class="ml-4">{{ trans('sentence.Share') }}:</li>
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-        </ul> --}}
-        <!-- Review Form -->
-        <div class="col-md-12 mt-2 pt-4">
+        <div class="col-md-12 ">
             <div id="review-form">
                 <form class="review-form">
-                    <div class="input-rating rtl-text-right h4">
+                    <div class="input-rating rtl-text-right h5">
                        <div id="loadProductRating"></div>
                        <div id="loadProductRatingMsg" class="p-1"></div>
                     </div>

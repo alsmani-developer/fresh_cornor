@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use App\User;
+use Ixudra\Curl\Facades\Curl;
 use App\UserFavorite;
 
 class UserController extends Controller
@@ -39,17 +40,22 @@ class UserController extends Controller
             return back()->with('error', 'احد الحقول المدخلة غير صحيح');
     }
     public function registerUserFirstStep(Request $request){
+        
         request()->validate([
         'user' => 'required',
         'email' => 'nullable|email',
         'phone' => 'required|int',
         'password' => 'required|min:6'
         ]);
+        $response = $this->verfiyPhoneNumber($request->phone);
+        if($response =="OK"){
         session()->put("user", $request->user);
         session()->put("password", $request->password);
         session()->put("email", $request->email);
         session()->put("phone", $request->phone);
-        session()->put("validate_code", '1234');
+        }else{
+            return redirect()->back()->withErrors('حدث خطا الرجا المحاولة لاحقا');
+        }
     }
     public function registerUserLastStep(Request $request){
         $this->validateSession($request);
@@ -74,6 +80,18 @@ class UserController extends Controller
             echo 'حدث خطا ما الرجاء المحاولة لاحقا';
             die();
         }
+    }
+    public function verfiyPhoneNumber($phone){
+        $username = "Almayzab";		    // اسم المستخدم الخاص بك في الموقع
+        $password = "44"; 		// كلمة المرور الخاصة بك
+        $destinations =$phone; 
+        $sender = "Almayzab";//الارقام المرسل لها  ,, يتم وضع فاصلة بين الارقام المراد الارسال لها
+        $numbers = '12345678910111236542301236985452315245552012369874563201423698745';
+        $number=substr(str_shuffle(str_repeat($numbers , 5)), 0,5);
+        $message = "your verification number is".$number;      // محتوى الرسالة
+        $response = Curl::to('http://196.202.134.90/SMSbulk/webacc.aspx?user=Almayzab&pwd=44&smstext='.$number.'&Sender=Almayzab&Nums='.$destinations.'')->get();
+        session()->put("validate_code", $number);
+        return $response;
     }
     public function logout(Request $request) {
         Auth::logout();

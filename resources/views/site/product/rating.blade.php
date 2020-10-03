@@ -1,22 +1,8 @@
-{{-- <div class="stars rtl-text-right" data-range={{ round($get_meat->meatsrating->avg('ratting')) }}>
-    @for($i = 1; $i <= 5; $i++)
-    @if($i <= round($get_meat->meatsrating->avg('ratting')))
-	@php
-	$checked = 'checked';
-	@endphp
-	@else
-	@php
-	$checked = '';
-	@endphp
-	@endif
-    <input id="star{{ $i }}" class="stars_rating" name="rating" value="{{ $i }}"
-     type="radio" {{ $checked }}><label for="star{{ $i }}"></label>
-    @endfor
-</div> --}}
+
 
 <ul class="list-inline rtl-text-right" data-range="{{ round($get_meat->meatsrating->avg('ratting')) }}">
     <li class="lsit-inline-item">
-        <span>{{ trans('sentence.Your Rating') }}: </span>
+        <span>{{ trans('sentence.Your Rating') }}</span>
     </li>
 	@for($i = 1; $i <= 5; $i++)
 	@if($i <= round($get_meat->meatsrating->avg('ratting')))

@@ -4,6 +4,7 @@
 }
 .rtl-text-center{
     text-align: center;
+    direction: rtl;
 }
 .rtl-text-left{
     text-align: left;

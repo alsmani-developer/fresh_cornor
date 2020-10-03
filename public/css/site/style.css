@@ -7,6 +7,12 @@
 .pb-10{
   padding-bottom: 10px;
 }
+.pb-20{
+  padding-bottom: 20px;
+}
+.rtl-text-center{
+  text-align: center;
+}
 .list-inline{
   padding-left: 0;
   list-style: none;
@@ -1541,6 +1547,14 @@ textarea.input {
 #product-imgs .product-preview.slick-current {
   border-color: #D10024;
 }
+#product-imgs .product-preview2 {
+  margin: 0px 5px;
+  border: 1px solid #E4E7ED;
+}
+
+#product-imgs .product-preview2.slick-current {
+  border-color: #D10024;
+}
 
 #product-imgs .slick-prev {
   top: -20px;
@@ -1568,6 +1582,11 @@ textarea.input {
 
 .product-preview img {
   width: 100%;
+  object-fit: cover;
+}
+.product-preview2 img {
+  width: 100%;
+  object-fit: cover;
 }
 
 /*----------------------------*\

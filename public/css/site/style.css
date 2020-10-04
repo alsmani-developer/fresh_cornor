@@ -1,6 +1,18 @@
 .cursor-pointer{
   cursor: pointer !important;
 }
+.primary-divider{
+  border: 2px solid #fe5757;
+}
+.pb-10{
+  padding-bottom: 10px;
+}
+.pb-20{
+  padding-bottom: 20px;
+}
+.rtl-text-center{
+  text-align: center;
+}
 .list-inline{
   padding-left: 0;
   list-style: none;
@@ -796,6 +808,7 @@ textarea.input {
   -webkit-transform: skewX(-45deg);
   -ms-transform: skewX(-45deg);
   transform: skewX(-45deg);
+  z-index: 2;
 }
 
 .shop:after {
@@ -810,12 +823,13 @@ textarea.input {
   -webkit-transform: skewX(-45deg) translateX(-100%);
   -ms-transform: skewX(-45deg) translateX(-100%);
   transform: skewX(-45deg) translateX(-100%);
+  z-index: 2;
 }
 
 .shop .shop-img {
   position: relative;
   background-color: #E4E7ED;
-  z-index: -1;
+  z-index: 1;
 }
 
 .shop .shop-img>img {
@@ -1012,8 +1026,11 @@ textarea.input {
 .product .product-body .product-name {
   text-transform: uppercase;
   font-size: 14px;
+  padding-bottom: 10px;
 }
-
+.old-price{
+  font-size: 13px;
+}
 .product .product-body .product-name>a {
   font-weight: 700;
 }
@@ -1208,6 +1225,7 @@ textarea.input {
 .product-widget .product-body .product-name {
   text-transform: uppercase;
   font-size: 12px;
+  padding-bottom: 10px;
 }
 
 .product-widget .product-body .product-name>a {
@@ -1529,6 +1547,14 @@ textarea.input {
 #product-imgs .product-preview.slick-current {
   border-color: #D10024;
 }
+#product-imgs .product-preview2 {
+  margin: 0px 5px;
+  border: 1px solid #E4E7ED;
+}
+
+#product-imgs .product-preview2.slick-current {
+  border-color: #D10024;
+}
 
 #product-imgs .slick-prev {
   top: -20px;
@@ -1556,6 +1582,11 @@ textarea.input {
 
 .product-preview img {
   width: 100%;
+  object-fit: cover;
+}
+.product-preview2 img {
+  width: 100%;
+  object-fit: cover;
 }
 
 /*----------------------------*\
@@ -1565,6 +1596,7 @@ textarea.input {
 .product-details .product-name {
   text-transform: uppercase;
   font-size: 18px;
+  padding-bottom: 10px;
 }
 
 .product-details .product-rating {
@@ -1586,7 +1618,7 @@ textarea.input {
 
 .product-details .product-price {
   display: inline-block;
-  font-size: 24px;
+  font-size: 18px;
   margin-top: 10px;
   margin-bottom: 15px;
   color: #D10024;

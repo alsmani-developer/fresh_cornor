@@ -62,7 +62,7 @@
     <div>
       <div class="w-100">
         <ul class="list-inline">
-      <button type="submit" class="btn btn-primary active w-50">
+      <button type="submit" class="btn btn-primary active w-100">
           {{ trans('sentence.Register') }}
       </button>
         </ul>
@@ -98,7 +98,7 @@
     <div>
       <div class="w-100">
         <ul class="list-inline">
-      <button type="submit" class="btn btn-primary active w-50">
+      <button type="submit" class="btn btn-primary active w-100">
           {{ trans('sentence.Register') }}
       </button>
         </ul>

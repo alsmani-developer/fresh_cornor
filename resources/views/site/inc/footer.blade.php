@@ -66,12 +66,12 @@
                             {{ trans('sentence.Service') }}
                         </h3>
                         <ul class="footer-links">
-                            <li><a href="#">
+                            <li><a href="/user-profile">
                                 {{ trans('sentence.My Account') }}
                             </a></li>
-                            <li><a href="#">
+                            <li><a href="/cart">
                                 {{ trans('sentence.View Cart') }}</a></li>
-                            <li><a href="#">
+                            <li><a href="/user-profile">
                                 {{ trans('sentence.Wishlist') }}</a></li>
                             <li><a href="#">
                                 {{ trans('sentence.Help') }}</a></li>

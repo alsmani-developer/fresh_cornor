@@ -21,8 +21,11 @@ class Discount extends Model
         return $this->hasMany('App\DiscountsQuantity', 'discount_id');
     }
 
+
     public function meats(){
         return $this->belongsToMany('App\Meat', 'discounts_meats', 'discount_id', 'meat_id');
-
     }
+
+
+  
 }

@@ -1,6 +1,4 @@
-
 <?php
-
 namespace App\Http\Controllers\VueAPI;
 
 use App\Http\Controllers\Controller;
@@ -29,3 +27,4 @@ class StokController extends Controller
     }
     
 }
+

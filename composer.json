@@ -15,10 +15,9 @@
         "ixudra/curl": "^6.17",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-<<<<<<< HEAD
+
         "paypal/rest-api-sdk-php": "^1.14",
-=======
->>>>>>> d7b7e2e7336ca76e2a5eea2ee3c3fec239dabc48
+
         "pusher/pusher-php-server": "^4.1",
         "tymon/jwt-auth": "dev-develop"
     },

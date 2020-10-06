@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "e7b390b21012c4e8acfcd207cd49aae7",
+=======
+    "content-hash": "d5fc6c352776299d17b5396335248c45",
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     "packages": [
         {
             "name": "bitfumes/laravel-multiauth",
@@ -157,6 +161,7 @@
             "time": "2019-12-04T15:06:13+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "doctrine/cache",
             "version": "1.10.2",
             "source": {
@@ -451,6 +456,8 @@
             "time": "2020-05-29T18:28:51+00:00"
         },
         {
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
             "name": "doctrine/inflector",
             "version": "2.0.3",
             "source": {

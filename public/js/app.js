@@ -2192,6 +2192,92 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     routes: {
@@ -2204,6 +2290,23 @@ __webpack_require__.r(__webpack_exports__);
       discounts: {},
       meats: {},
       form: new Form({
+<<<<<<< HEAD
+        id: "",
+        ar_name: "",
+        en_name: "",
+        ar_description: "",
+        en_description: "",
+        discount_type_id: "",
+        pic: "",
+        start_date: "",
+        end_date: "",
+        qnt: "",
+        meat_id: [],
+        amount: "",
+        img_name: ""
+      }),
+      showModal: false
+=======
         id: '',
         ar_name: '',
         en_name: '',
@@ -2218,6 +2321,7 @@ __webpack_require__.r(__webpack_exports__);
         amount: '',
         img_name: ''
       })
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     };
   },
   methods: {
@@ -2232,7 +2336,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var file = e.target.files[0];
+<<<<<<< HEAD
+      this.form.img_name = file["name"].substring(file["name"].indexOf("."));
+=======
       this.form.img_name = file['name'].substring(file['name'].indexOf("."));
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       var reader = new FileReader();
 
       reader.onloadend = function (file) {
@@ -2246,21 +2354,34 @@ __webpack_require__.r(__webpack_exports__);
       this.form.clear();
       this.editMode = true;
       this.form.reset();
+<<<<<<< HEAD
+      $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       this.form.fill(discount);
     },
     updatediscount: function updatediscount() {
       var _this3 = this;
 
+<<<<<<< HEAD
+      this.form.patch(this.routes.get + "/" + this.form.id).then(function (response) {
+=======
       this.form.patch(this.routes.get + '/' + this.form.id).then(function (response) {
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         console.log(response.data);
         Success.fire({
           icon: response.data.status,
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this3.loaddiscounts();
         }
@@ -2271,7 +2392,11 @@ __webpack_require__.r(__webpack_exports__);
     openModalWindow: function openModalWindow() {
       this.editMode = false;
       this.form.reset();
+<<<<<<< HEAD
+      this.showModal = true; //   $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     },
     loaddiscounts: function loaddiscounts() {
       var _this4 = this;
@@ -2290,9 +2415,16 @@ __webpack_require__.r(__webpack_exports__);
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          _this5.showModal = false;
+          $("#addNew").modal("hide");
+          $(".modal-backdrop fade show").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
           $('.modal-backdrop fade show').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this5.loaddiscounts();
         }
@@ -2304,6 +2436,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this6 = this;
 
       Swal.fire({
+<<<<<<< HEAD
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.value) {
+          //Send Request to server
+          _this6.form["delete"](_this6.routes.post + "/" + id).then(function (response) {
+            Swal.fire("Deleted!", "discount deleted successfully", "success");
+=======
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         icon: 'warning',
@@ -2316,14 +2462,22 @@ __webpack_require__.r(__webpack_exports__);
           //Send Request to server
           _this6.form["delete"](_this6.routes.post + '/' + id).then(function (response) {
             Swal.fire('Deleted!', 'discount deleted successfully', 'success');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
             _this6.loaddiscounts();
           })["catch"](function () {
             Swal.fire({
+<<<<<<< HEAD
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: "<a href>Why do I have this issue?</a>"
+=======
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
               footer: '<a href>Why do I have this issue?</a>'
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
             });
           });
         }
@@ -2452,6 +2606,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     routes: {
@@ -2463,10 +2649,18 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       aeras: {},
       form: new Form({
+<<<<<<< HEAD
+        id: "",
+        ar_name: "",
+        en_name: ""
+      }),
+      showModal: false
+=======
         id: '',
         ar_name: '',
         en_name: ''
       })
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     };
   },
   methods: {
@@ -2474,20 +2668,33 @@ __webpack_require__.r(__webpack_exports__);
       this.form.clear();
       this.editMode = true;
       this.form.reset();
+<<<<<<< HEAD
+      $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       this.form.fill(aera);
     },
     updateaera: function updateaera() {
       var _this = this;
 
+<<<<<<< HEAD
+      this.form.patch(this.routes.get + "/" + this.form.id).then(function (response) {
+=======
       this.form.patch(this.routes.get + '/' + this.form.id).then(function (response) {
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         Success.fire({
           icon: response.data.status,
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this.loadaeras();
         }
@@ -2498,7 +2705,11 @@ __webpack_require__.r(__webpack_exports__);
     openModalWindow: function openModalWindow() {
       this.editMode = false;
       this.form.reset();
+<<<<<<< HEAD
+      this.showModal = true; //   $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     },
     loadaeras: function loadaeras() {
       var _this2 = this;
@@ -2517,8 +2728,14 @@ __webpack_require__.r(__webpack_exports__);
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          _this3.showModal = false;
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this3.loadaeras();
         }
@@ -2530,6 +2747,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       Swal.fire({
+<<<<<<< HEAD
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.value) {
+          //Send Request to server
+          _this4.form["delete"](_this4.routes.post + "/" + id).then(function (response) {
+            Swal.fire("Deleted!", "aera deleted successfully", "success");
+=======
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         icon: 'warning',
@@ -2542,14 +2773,22 @@ __webpack_require__.r(__webpack_exports__);
           //Send Request to server
           _this4.form["delete"](_this4.routes.post + '/' + id).then(function (response) {
             Swal.fire('Deleted!', 'aera deleted successfully', 'success');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
             _this4.loadaeras();
           })["catch"](function () {
             Swal.fire({
+<<<<<<< HEAD
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: "<a href>Why do I have this issue?</a>"
+=======
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
               footer: '<a href>Why do I have this issue?</a>'
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
             });
           });
         }
@@ -2720,6 +2959,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     routes: {
@@ -2734,6 +3036,21 @@ __webpack_require__.r(__webpack_exports__);
       origins: {},
       areas: {},
       shapes: {},
+<<<<<<< HEAD
+      showModal: false,
+      form: new Form({
+        id: "",
+        ar_name: "",
+        en_name: "",
+        cattels_types_id: "",
+        cattles_origins_id: "",
+        meats_areas_id: "",
+        meats_shapes_id: "",
+        ar_description: "",
+        en_description: "",
+        pic: "",
+        img_name: ""
+=======
       form: new Form({
         id: '',
         ar_name: '',
@@ -2746,6 +3063,7 @@ __webpack_require__.r(__webpack_exports__);
         en_description: '',
         pic: '',
         img_name: ''
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       })
     };
   },
@@ -2770,7 +3088,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var file = e.target.files[0];
+<<<<<<< HEAD
+      this.form.img_name = file["name"].substring(file["name"].indexOf("."));
+=======
       this.form.img_name = file['name'].substring(file['name'].indexOf("."));
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       var reader = new FileReader();
 
       reader.onloadend = function (file) {
@@ -2784,21 +3106,34 @@ __webpack_require__.r(__webpack_exports__);
       this.form.clear();
       this.editMode = true;
       this.form.reset();
+<<<<<<< HEAD
+      $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       this.form.fill(meat);
     },
     updatemeat: function updatemeat() {
       var _this3 = this;
 
+<<<<<<< HEAD
+      this.form.patch(this.routes.get + "/" + this.form.id).then(function (response) {
+=======
       this.form.patch(this.routes.get + '/' + this.form.id).then(function (response) {
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         console.log(response.data);
         Success.fire({
           icon: response.data.status,
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this3.loadmeats();
         }
@@ -2808,8 +3143,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     openModalWindow: function openModalWindow() {
       this.editMode = false;
+<<<<<<< HEAD
+      this.showModal = true, this.form.reset(); //   $("#addNew").modal("show");
+=======
       this.form.reset();
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     },
     loadmeats: function loadmeats() {
       var _this4 = this;
@@ -2828,10 +3167,16 @@ __webpack_require__.r(__webpack_exports__);
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+          _this5.showModal = false, _this5.loadmeats();
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
 
           _this5.loadmeats();
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         }
       })["catch"](function () {
         console.log("Error.....");
@@ -2841,6 +3186,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this6 = this;
 
       Swal.fire({
+<<<<<<< HEAD
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.value) {
+          //Send Request to server
+          _this6.form["delete"](_this6.routes.post + "/" + id).then(function (response) {
+            Swal.fire("Deleted!", "meat deleted successfully", "success");
+=======
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         icon: 'warning',
@@ -2853,14 +3212,22 @@ __webpack_require__.r(__webpack_exports__);
           //Send Request to server
           _this6.form["delete"](_this6.routes.post + '/' + id).then(function (response) {
             Swal.fire('Deleted!', 'meat deleted successfully', 'success');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
             _this6.loadmeats();
           })["catch"](function () {
             Swal.fire({
+<<<<<<< HEAD
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: "<a href>Why do I have this issue?</a>"
+=======
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
               footer: '<a href>Why do I have this issue?</a>'
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
             });
           });
         }
@@ -2989,6 +3356,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     routes: {
@@ -3000,10 +3403,18 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       shapes: {},
       form: new Form({
+<<<<<<< HEAD
+        id: "",
+        ar_name: "",
+        en_name: ""
+      }),
+      showModal: false
+=======
         id: '',
         ar_name: '',
         en_name: ''
       })
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     };
   },
   methods: {
@@ -3011,20 +3422,33 @@ __webpack_require__.r(__webpack_exports__);
       this.form.clear();
       this.editMode = true;
       this.form.reset();
+<<<<<<< HEAD
+      $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       this.form.fill(shape);
     },
     updateshape: function updateshape() {
       var _this = this;
 
+<<<<<<< HEAD
+      this.form.patch(this.routes.get + "/" + this.form.id).then(function (response) {
+=======
       this.form.patch(this.routes.get + '/' + this.form.id).then(function (response) {
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         Success.fire({
           icon: response.data.status,
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this.loadshapes();
         }
@@ -3035,7 +3459,11 @@ __webpack_require__.r(__webpack_exports__);
     openModalWindow: function openModalWindow() {
       this.editMode = false;
       this.form.reset();
+<<<<<<< HEAD
+      this.showModal = true; //   $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     },
     loadshapes: function loadshapes() {
       var _this2 = this;
@@ -3053,10 +3481,18 @@ __webpack_require__.r(__webpack_exports__);
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          _this3.loadshapes();
+
+          _this3.showModal = false;
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           _this3.loadshapes();
 
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         }
       })["catch"](function () {
         console.log("Error......");
@@ -3066,6 +3502,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       Swal.fire({
+<<<<<<< HEAD
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.value) {
+          //Send Request to server
+          _this4.form["delete"](_this4.routes.post + "/" + id).then(function (response) {
+            Swal.fire("Deleted!", "shape deleted successfully", "success");
+=======
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         icon: 'warning',
@@ -3078,14 +3528,22 @@ __webpack_require__.r(__webpack_exports__);
           //Send Request to server
           _this4.form["delete"](_this4.routes.post + '/' + id).then(function (response) {
             Swal.fire('Deleted!', 'shape deleted successfully', 'success');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
             _this4.loadshapes();
           })["catch"](function () {
             Swal.fire({
+<<<<<<< HEAD
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: "<a href>Why do I have this issue?</a>"
+=======
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
               footer: '<a href>Why do I have this issue?</a>'
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
             });
           });
         }
@@ -3306,6 +3764,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     routes: {
@@ -3317,10 +3815,18 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       origins: {},
       form: new Form({
+<<<<<<< HEAD
+        id: "",
+        ar_name: "",
+        en_name: ""
+      }),
+      showModal: false
+=======
         id: '',
         ar_name: '',
         en_name: ''
       })
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     };
   },
   methods: {
@@ -3328,20 +3834,33 @@ __webpack_require__.r(__webpack_exports__);
       this.form.clear();
       this.editMode = true;
       this.form.reset();
+<<<<<<< HEAD
+      $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       this.form.fill(origin);
     },
     updateorigin: function updateorigin() {
       var _this = this;
 
+<<<<<<< HEAD
+      this.form.patch(this.routes.get + "/" + this.form.id).then(function (response) {
+=======
       this.form.patch(this.routes.get + '/' + this.form.id).then(function (response) {
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         Success.fire({
           icon: response.data.status,
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this.loadorigins();
         }
@@ -3350,9 +3869,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     openModalWindow: function openModalWindow() {
+<<<<<<< HEAD
+      this.showModal = true, this.editMode = false;
+      this.form.reset(); //   $("#addNew").modal("show");
+=======
       this.editMode = false;
       this.form.reset();
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     },
     loadorigins: function loadorigins() {
       var _this2 = this;
@@ -3370,8 +3894,13 @@ __webpack_require__.r(__webpack_exports__);
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this3.loadorigins();
         }
@@ -3383,6 +3912,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       Swal.fire({
+<<<<<<< HEAD
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.value) {
+          //Send Request to server
+          _this4.form["delete"](_this4.routes.post + "/" + id).then(function (response) {
+            Swal.fire("Deleted!", "origin deleted successfully", "success");
+=======
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         icon: 'warning',
@@ -3395,14 +3938,22 @@ __webpack_require__.r(__webpack_exports__);
           //Send Request to server
           _this4.form["delete"](_this4.routes.post + '/' + id).then(function (response) {
             Swal.fire('Deleted!', 'origin deleted successfully', 'success');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
             _this4.loadorigins();
           })["catch"](function () {
             Swal.fire({
+<<<<<<< HEAD
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: "<a href>Why do I have this issue?</a>"
+=======
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
               footer: '<a href>Why do I have this issue?</a>'
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
             });
           });
         }
@@ -3530,6 +4081,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     routes: {
@@ -3541,6 +4126,19 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       types: {},
       form: new Form({
+<<<<<<< HEAD
+        id: "",
+        ar_name: "",
+        en_name: ""
+      }),
+      showModal: false
+    };
+  },
+  methods: {
+    hideModal: function hideModal() {
+      $("#addNew").modal("hide");
+    },
+=======
         id: '',
         ar_name: '',
         en_name: ''
@@ -3548,24 +4146,38 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     editModalWindow: function editModalWindow(type) {
       this.form.clear();
       this.editMode = true;
       this.form.reset();
+<<<<<<< HEAD
+      $("#addNew").modal("show");
+=======
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
       this.form.fill(type);
     },
     updatetype: function updatetype() {
       var _this = this;
 
+<<<<<<< HEAD
+      this.form.patch(this.routes.get + "/" + this.form.id).then(function (response) {
+=======
       this.form.patch(this.routes.get + '/' + this.form.id).then(function (response) {
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         Success.fire({
           icon: response.data.status,
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+=======
         if (response.data.status == 'success') {
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
           _this.loadtypes();
         }
@@ -3575,9 +4187,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     openModalWindow: function openModalWindow() {
       this.editMode = false;
+<<<<<<< HEAD
+      this.form.reset(); //   $("#addNew").modal("show");
+
+      this.showModal = true;
+    },
+    hideModalWindow: function hideModalWindow() {
+      $("#addNew").modal("hide");
+=======
       this.form.reset();
       this.form.clear();
       $('#addNew').modal('show');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
     },
     loadtypes: function loadtypes() {
       var _this2 = this;
@@ -3595,10 +4216,18 @@ __webpack_require__.r(__webpack_exports__);
           title: response.data.title
         });
 
+<<<<<<< HEAD
+        if (response.data.status == "success") {
+          $("#addNew").modal("hide");
+          _this3.showModal = false;
+
+          _this3.loadtypes();
+=======
         if (response.data.status == 'success') {
           _this3.loadtypes();
 
           $('#addNew').modal('hide');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         }
       })["catch"](function () {
         console.log("Error......");
@@ -3608,6 +4237,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       Swal.fire({
+<<<<<<< HEAD
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(function (result) {
+        if (result.value) {
+          //Send Request to server
+          _this4.form["delete"](_this4.routes.post + "/" + id).then(function (response) {
+            Swal.fire("Deleted!", "type deleted successfully", "success");
+=======
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         icon: 'warning',
@@ -3620,14 +4263,22 @@ __webpack_require__.r(__webpack_exports__);
           //Send Request to server
           _this4.form["delete"](_this4.routes.post + '/' + id).then(function (response) {
             Swal.fire('Deleted!', 'type deleted successfully', 'success');
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
             _this4.loadtypes();
           })["catch"](function () {
             Swal.fire({
+<<<<<<< HEAD
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: "<a href>Why do I have this issue?</a>"
+=======
               icon: 'error',
               title: 'Oops...',
               text: 'Something went wrong!',
               footer: '<a href>Why do I have this issue?</a>'
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
             });
           });
         }
@@ -8092,7 +8743,11 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
+<<<<<<< HEAD
+exports.push([module.i, "\n#form_button {\n  margin-left: 100%;\n}\n.lable {\n  text-align: center;\n}\n#text {\n  text-align: center;\n}\n", ""]);
+=======
 exports.push([module.i, "\n#form_button{\n   margin-left: 100%;\n}\n.lable{\n    text-align: center;\n}\n#text{\n    text-align: center;\n}\n\n", ""]);
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 // exports
 
@@ -8111,7 +8766,11 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
+<<<<<<< HEAD
+exports.push([module.i, "\n#form_button {\n  margin-left: 100%;\n}\n.lable {\n  text-align: center;\n}\n#text {\n  text-align: center;\n}\n", ""]);
+=======
 exports.push([module.i, "\n#form_button{\n   margin-left: 100%;\n}\n.lable{\n    text-align: center;\n}\n#text{\n    text-align: center;\n}\n\n", ""]);
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 // exports
 
@@ -8130,7 +8789,11 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
+<<<<<<< HEAD
+exports.push([module.i, "\n#form_button {\n  margin-left: 100%;\n}\n.lable {\n  text-align: center;\n}\n#text {\n  text-align: center;\n}\n.showModal {\n  display: block;\n}\n", ""]);
+=======
 exports.push([module.i, "\n#form_button{\n   margin-left: 100%;\n}\n.lable{\n    text-align: center;\n}\n#text{\n    text-align: center;\n}\n\n", ""]);
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 // exports
 
@@ -8149,7 +8812,11 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
+<<<<<<< HEAD
+exports.push([module.i, "\n#form_button {\n  margin-left: 100%;\n}\n.lable {\n  text-align: center;\n}\n#text {\n  text-align: center;\n}\n.edit-tag {\n  color: #ffbb33;\n  margin: 10px;\n}\n.delete-tag {\n  color: #ff4444;\n  margin: 10px;\n}\n", ""]);
+=======
 exports.push([module.i, "\n#form_button{\n   margin-left: 100%;\n}\n.lable{\n    text-align: center;\n}\n#text{\n    text-align: center;\n}\n.edit-tag{\n  color: #ffbb33;\n  margin:10px\n}\n.delete-tag {\n  color: #ff4444;\n  margin:10px;\n}\n\n", ""]);
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 // exports
 
@@ -8168,7 +8835,11 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
+<<<<<<< HEAD
+exports.push([module.i, "\n#form_button{\n       margin-left: 100%;\n}\n.lable{\n        text-align: center;\n}\n#text{\n        text-align: center;\n}\n.showModal {\n    display: block\n}\n\n", ""]);
+=======
 exports.push([module.i, "\n#form_button{\n   margin-left: 100%;\n}\n.lable{\n    text-align: center;\n}\n#text{\n    text-align: center;\n}\n\n", ""]);
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 // exports
 
@@ -8187,7 +8858,11 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
+<<<<<<< HEAD
+exports.push([module.i, "\n#form_button {\n  margin-left: 100%;\n}\n.lable {\n  text-align: center;\n}\n#text {\n  text-align: center;\n}\n.showModal {\n    display: block;\n}\n", ""]);
+=======
 exports.push([module.i, "\n#form_button{\n   margin-left: 100%;\n}\n.lable{\n    text-align: center;\n}\n#text{\n    text-align: center;\n}\n\n", ""]);
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 // exports
 
@@ -8206,7 +8881,11 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
+<<<<<<< HEAD
+exports.push([module.i, "\n#form_button {\n  margin-left: 100%;\n}\n.lable {\n  text-align: center;\n}\n#text {\n  text-align: center;\n}\n.showModal {\n    display: block\n}\n", ""]);
+=======
 exports.push([module.i, "\n#form_button{\n   margin-left: 100%;\n}\n.lable{\n    text-align: center;\n}\n#text{\n    text-align: center;\n}\n\n", ""]);
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 // exports
 
@@ -45246,7 +45925,11 @@ var render = function() {
                   on: { click: _vm.openModalWindow }
                 },
                 [
+<<<<<<< HEAD
+                  _vm._v("\n              اضافه "),
+=======
                   _vm._v("اضافه "),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                   _c("i", { staticClass: "fas fa-discount-plus fa-fw" })
                 ]
               )
@@ -45299,9 +45982,13 @@ var render = function() {
                             },
                             [_c("i", { staticClass: "fa fa-edit blue" })]
                           ),
+<<<<<<< HEAD
+                          _vm._v("\n                  |\n                  "),
+=======
                           _vm._v(
                             "\n                    |\n                    "
                           ),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           _c(
                             "button",
                             {
@@ -45338,7 +46025,12 @@ var render = function() {
     _c(
       "div",
       {
+<<<<<<< HEAD
+        staticClass: "modal",
+        class: { showModal: _vm.showModal },
+=======
         staticClass: "modal fade",
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         attrs: {
           id: "addNew",
           tabindex: "-1",
@@ -45371,7 +46063,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            اضافه لحمه جديد\n          ")]
+=======
                   [_vm._v("اضافه  لحمه جديد")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _c(
@@ -45388,7 +46084,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            تعديل بيانات اللحمه\n          ")]
+=======
                   [_vm._v("تعديل بيانات اللحمه")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -45701,7 +46401,17 @@ var render = function() {
                             return _c(
                               "option",
                               { domProps: { value: meat.id } },
+<<<<<<< HEAD
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(meat.ar_name) +
+                                    "\n                "
+                                )
+                              ]
+=======
                               [_vm._v(_vm._s(meat.ar_name))]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                             )
                           }),
                           0
@@ -45710,7 +46420,11 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
+<<<<<<< HEAD
+                      _c("label", [_vm._v(" وصف عربي:")]),
+=======
                       _c("label", [_vm._v("  وصف عربي:")]),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                       _vm._v(" "),
                       _c("textarea", {
                         directives: [
@@ -45795,7 +46509,11 @@ var render = function() {
                         staticClass: "btn btn-danger",
                         attrs: { discount: "button", "data-dismiss": "modal" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              اغلاق\n            ")]
+=======
                       [_vm._v("اغلاق")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -45812,7 +46530,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { discount: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              تعديل\n            ")]
+=======
                       [_vm._v("تعديل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -45829,7 +46551,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { discount: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              اضافه\n            ")]
+=======
                       [_vm._v("اضافه")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     )
                   ])
                 ]
@@ -45917,7 +46643,11 @@ var render = function() {
                   on: { click: _vm.openModalWindow }
                 },
                 [
+<<<<<<< HEAD
+                  _vm._v("\n              اضافه "),
+=======
                   _vm._v("اضافه "),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                   _c("i", { staticClass: "fas fa-aera-plus fa-fw" })
                 ]
               )
@@ -45956,9 +46686,13 @@ var render = function() {
                             },
                             [_c("i", { staticClass: "fa fa-edit blue" })]
                           ),
+<<<<<<< HEAD
+                          _vm._v("\n                  |\n                  "),
+=======
                           _vm._v(
                             "\n                        |\n                        "
                           ),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           _c(
                             "button",
                             {
@@ -45995,7 +46729,12 @@ var render = function() {
     _c(
       "div",
       {
+<<<<<<< HEAD
+        staticClass: "modal",
+        class: { showModal: _vm.showModal },
+=======
         staticClass: "modal fade",
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         attrs: {
           id: "addNew",
           tabindex: "-1",
@@ -46028,7 +46767,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            اضافه مكان لحمه جديد\n          ")]
+=======
                   [_vm._v("اضافه مكان لحمه جديد")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _c(
@@ -46045,7 +46788,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            تعديل بيانات المكان\n          ")]
+=======
                   [_vm._v("تعديل بيانات المكان")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -46151,7 +46898,11 @@ var render = function() {
                         staticClass: "btn btn-danger",
                         attrs: { aera: "button", "data-dismiss": "modal" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              اغلاق\n            ")]
+=======
                       [_vm._v("اغلاق")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -46168,7 +46919,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { aera: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              تعديل\n            ")]
+=======
                       [_vm._v("تعديل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -46185,7 +46940,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { aera: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              انشاء\n            ")]
+=======
                       [_vm._v("انشاء")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     )
                   ])
                 ]
@@ -46267,7 +47026,11 @@ var render = function() {
                   on: { click: _vm.openModalWindow }
                 },
                 [
+<<<<<<< HEAD
+                  _vm._v("\n              اضافه "),
+=======
                   _vm._v("اضافه "),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                   _c("i", { staticClass: "fas fa-meat-plus fa-fw" })
                 ]
               )
@@ -46310,9 +47073,13 @@ var render = function() {
                             },
                             [_c("i", { staticClass: "fa fa-edit blue" })]
                           ),
+<<<<<<< HEAD
+                          _vm._v("\n                  |\n                  "),
+=======
                           _vm._v(
                             "\n                    |\n                    "
                           ),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           _c(
                             "button",
                             {
@@ -46350,6 +47117,10 @@ var render = function() {
       "div",
       {
         staticClass: "modal fade",
+<<<<<<< HEAD
+        class: { showModal: _vm.showModal },
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         attrs: {
           id: "addNew",
           tabindex: "-1",
@@ -46382,7 +47153,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            اضافه لحمه جديد\n          ")]
+=======
                   [_vm._v("اضافه  لحمه جديد")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _c(
@@ -46399,7 +47174,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            تعديل بيانات اللحمه\n          ")]
+=======
                   [_vm._v("تعديل بيانات اللحمه")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -46537,7 +47316,17 @@ var render = function() {
                           return _c(
                             "option",
                             { domProps: { value: type.id } },
+<<<<<<< HEAD
+                            [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(type.ar_name) +
+                                  "\n                "
+                              )
+                            ]
+=======
                             [_vm._v(_vm._s(type.ar_name))]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           )
                         }),
                         0
@@ -46580,11 +47369,25 @@ var render = function() {
                             }
                           }
                         },
+<<<<<<< HEAD
+                        _vm._l(_vm.origins, function(origin, index) {
+                          return _c(
+                            "option",
+                            { key: index, domProps: { value: origin.id } },
+                            [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(origin.ar_name) +
+                                  "\n                "
+                              )
+                            ]
+=======
                         _vm._l(_vm.origins, function(origin) {
                           return _c(
                             "option",
                             { domProps: { value: origin.id } },
                             [_vm._v(_vm._s(origin.ar_name))]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           )
                         }),
                         0
@@ -46631,7 +47434,17 @@ var render = function() {
                           return _c(
                             "option",
                             { domProps: { value: area.id } },
+<<<<<<< HEAD
+                            [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(area.ar_name) +
+                                  "\n                "
+                              )
+                            ]
+=======
                             [_vm._v(_vm._s(area.ar_name))]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           )
                         }),
                         0
@@ -46678,7 +47491,17 @@ var render = function() {
                           return _c(
                             "option",
                             { domProps: { value: shape.id } },
+<<<<<<< HEAD
+                            [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(shape.ar_name) +
+                                  "\n                "
+                              )
+                            ]
+=======
                             [_vm._v(_vm._s(shape.ar_name))]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           )
                         }),
                         0
@@ -46686,7 +47509,11 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
+<<<<<<< HEAD
+                      _c("label", [_vm._v(" وصف عربي:")]),
+=======
                       _c("label", [_vm._v("  وصف عربي:")]),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                       _vm._v(" "),
                       _c("textarea", {
                         directives: [
@@ -46769,7 +47596,11 @@ var render = function() {
                         staticClass: "btn btn-danger",
                         attrs: { meat: "button", "data-dismiss": "modal" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              اغلاق\n            ")]
+=======
                       [_vm._v("اغلاق")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -46786,7 +47617,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { type: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              تعديل\n            ")]
+=======
                       [_vm._v("تعديل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -46803,7 +47638,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { type: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              أضافه\n            ")]
+=======
                       [_vm._v("أضافه")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     )
                   ])
                 ]
@@ -46889,7 +47728,11 @@ var render = function() {
                   on: { click: _vm.openModalWindow }
                 },
                 [
+<<<<<<< HEAD
+                  _vm._v("\n              اضافه "),
+=======
                   _vm._v("اضافه "),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                   _c("i", { staticClass: "fas fa-shape-plus fa-fw" })
                 ]
               )
@@ -46965,7 +47808,12 @@ var render = function() {
     _c(
       "div",
       {
+<<<<<<< HEAD
+        staticClass: "modal",
+        class: { showModal: _vm.showModal },
+=======
         staticClass: "modal fade",
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         attrs: {
           id: "addNew",
           tabindex: "-1",
@@ -46998,7 +47846,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            اضافه شكل لحمه جديد\n          ")]
+=======
                   [_vm._v("اضافه شكل لحمه جديد")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _c(
@@ -47015,7 +47867,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            تعديل بيانات الشكل\n          ")]
+=======
                   [_vm._v("تعديل بيانات الشكل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -47121,7 +47977,11 @@ var render = function() {
                         staticClass: "btn btn-danger",
                         attrs: { shape: "button", "data-dismiss": "modal" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              اغلاق\n            ")]
+=======
                       [_vm._v("اغلاق")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -47138,7 +47998,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { shape: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              تعديل\n            ")]
+=======
                       [_vm._v("تعديل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -47155,7 +48019,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { shape: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              انشاء\n            ")]
+=======
                       [_vm._v("انشاء")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     )
                   ])
                 ]
@@ -47354,7 +48222,11 @@ var render = function() {
                   on: { click: _vm.openModalWindow }
                 },
                 [
+<<<<<<< HEAD
+                  _vm._v("\n              اضافه "),
+=======
                   _vm._v("اضافه "),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                   _c("i", { staticClass: "fas fa-origin-plus fa-fw" })
                 ]
               )
@@ -47372,7 +48244,11 @@ var render = function() {
                     _vm._m(0),
                     _vm._v(" "),
                     _vm._l(_vm.origins.data, function(origin, index) {
+<<<<<<< HEAD
+                      return _c("tr", { key: index }, [
+=======
                       return _c("tr", { key: _vm.origins.id }, [
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                         _c("td", [_vm._v(_vm._s(origin.id))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(origin.ar_name))]),
@@ -47392,9 +48268,13 @@ var render = function() {
                             },
                             [_c("i", { staticClass: "fa fa-edit blue" })]
                           ),
+<<<<<<< HEAD
+                          _vm._v("\n                  |\n                  "),
+=======
                           _vm._v(
                             "\n                        |\n                        "
                           ),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           _c(
                             "a",
                             {
@@ -47431,7 +48311,12 @@ var render = function() {
     _c(
       "div",
       {
+<<<<<<< HEAD
+        staticClass: "modal",
+        class: { showModal: _vm.showModal },
+=======
         staticClass: "modal fade",
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         attrs: {
           id: "addNew",
           tabindex: "-1",
@@ -47464,7 +48349,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            اضافه اصل نوع جديد\n          ")]
+=======
                   [_vm._v("اضافه اصل نوع جديد")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _c(
@@ -47481,7 +48370,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            تعديل بيانات الاصل\n          ")]
+=======
                   [_vm._v("تعديل بيانات الاصل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -47587,7 +48480,11 @@ var render = function() {
                         staticClass: "btn btn-danger",
                         attrs: { origin: "button", "data-dismiss": "modal" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              اغلاق\n            ")]
+=======
                       [_vm._v("اغلاق")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -47604,7 +48501,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { origin: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              تعديل\n            ")]
+=======
                       [_vm._v("تعديل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -47621,7 +48522,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { origin: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              انشاء\n            ")]
+=======
                       [_vm._v("انشاء")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     )
                   ])
                 ]
@@ -47703,7 +48608,11 @@ var render = function() {
                   on: { click: _vm.openModalWindow }
                 },
                 [
+<<<<<<< HEAD
+                  _vm._v("\n              اضافه "),
+=======
                   _vm._v("اضافه "),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                   _c("i", { staticClass: "fas fa-type-plus fa-fw" })
                 ]
               )
@@ -47721,7 +48630,11 @@ var render = function() {
                     _vm._m(0),
                     _vm._v(" "),
                     _vm._l(_vm.types.data, function(type, index) {
+<<<<<<< HEAD
+                      return _c("tr", { key: index }, [
+=======
                       return _c("tr", { key: _vm.types.id }, [
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                         _c("td", [_vm._v(_vm._s(type.id))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(type.ar_name))]),
@@ -47741,9 +48654,13 @@ var render = function() {
                             },
                             [_c("i", { staticClass: "fa fa-edit blue" })]
                           ),
+<<<<<<< HEAD
+                          _vm._v("\n                  |\n                  "),
+=======
                           _vm._v(
                             "\n                        |\n                        "
                           ),
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                           _c(
                             "a",
                             {
@@ -47780,7 +48697,13 @@ var render = function() {
     _c(
       "div",
       {
+<<<<<<< HEAD
+        ref: "addNew",
+        staticClass: "modal",
+        class: { showModal: _vm.showModal },
+=======
         staticClass: "modal fade",
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         attrs: {
           id: "addNew",
           tabindex: "-1",
@@ -47813,7 +48736,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            اضافه نوع جديد\n          ")]
+=======
                   [_vm._v("اضافه نوع جديد")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _c(
@@ -47830,7 +48757,11 @@ var render = function() {
                     staticClass: "modal-title",
                     attrs: { id: "addNewLabel" }
                   },
+<<<<<<< HEAD
+                  [_vm._v("\n            تعديل بيانات النوع\n          ")]
+=======
                   [_vm._v("تعديل بيانات النوع")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                 ),
                 _vm._v(" "),
                 _vm._m(1)
@@ -47936,7 +48867,11 @@ var render = function() {
                         staticClass: "btn btn-danger",
                         attrs: { type: "button", "data-dismiss": "modal" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              اغلاق\n            ")]
+=======
                       [_vm._v("اغلاق")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -47953,7 +48888,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { type: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              تعديل\n            ")]
+=======
                       [_vm._v("تعديل")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     ),
                     _vm._v(" "),
                     _c(
@@ -47970,7 +48909,11 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { type: "submit" }
                       },
+<<<<<<< HEAD
+                      [_vm._v("\n              انشاء\n            ")]
+=======
                       [_vm._v("انشاء")]
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
                     )
                   ])
                 ]
@@ -61080,8 +62023,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+__webpack_require__(/*! /home/anon/Documents/fresh_cornor-master/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/anon/Documents/fresh_cornor-master/resources/sass/app.scss */"./resources/sass/app.scss");
+=======
 __webpack_require__(/*! C:\Users\Alsamni\Desktop\project\fresh_corner\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Alsamni\Desktop\project\fresh_corner\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
 
 
 /***/ })

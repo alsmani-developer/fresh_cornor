@@ -164,8 +164,23 @@ class UserApi extends APIController
       
       
     }
-    public function getCode(){
-        return response()->json('code',1111);
+    public function getCode(Request $request){
+        if(User::where('phone',$request->phone)->count() > 0){
+            return response()->json(['msg'=>'هذا الرقم موجود مسجل'],200);
+           
+        }else  {
+            $username = "Almayzab";		    // اسم المستخدم الخاص بك في الموقع
+            $password = "44"; 		// كلمة المرور الخاصة بك
+            $destinations =$request->phone; 
+            $sender = "Almayzab";//الارقام المرسل لها  ,, يتم وضع فاصلة بين الارقام المراد الارسال لها
+            $numbers = '12345678910111236542301236985452315245552012369874563201423698745';
+            $number=substr(str_shuffle(str_repeat($numbers , 5)), 0,5);
+            $message = "your verification number is".$number;      // محتوى الرسالة
+            $response = Curl::to('http://196.202.134.90/SMSbulk/webacc.aspx?user=Almayzab&pwd=44&smstext='.$number.'&Sender=Almayzab&Nums='.$destinations.'')->get();
+           
+            return response()->json(['code'=>$number],200);
+        }
+        
     }
      public function resetPassword(Request $request){
         try{

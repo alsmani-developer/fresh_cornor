@@ -3576,6 +3576,7 @@ __webpack_require__.r(__webpack_exports__);
     openModalWindow: function openModalWindow() {
       this.editMode = false;
       this.form.reset();
+      this.form.clear();
       $('#addNew').modal('show');
     },
     loadtypes: function loadtypes() {

@@ -9,6 +9,7 @@ use App\Meat;
 use App\Discount;
 use App\OrdersMeat;
 use App\OrdersMeatsDiscount;
+use DB;
 use App\Http\Controllers\APIController;
 use Illuminate\Http\Request;
 
@@ -107,6 +108,26 @@ class OrderApi extends APIController
 
         return response()->json([
             'data'=>$meat
+        ], 200);
+    }
+    public function home(Request $request){
+        $discounts = Discount::take($request->limit)->get();
+        $meats = Meat::orderBy('id', 'DESC')->take( $request->limit)->get();
+        $orders = Meat::leftjoin('orders_meats', 'meats.id', 'orders_meats.meat_id')
+        ->select([DB::raw('Count(orders_meats.id) as order_count'), 'meats.id', 'meats.ar_name', 
+        'meats.cattels_types_id', 'meats.pic'])->
+         orderByDesc('order_count')->groupBy('meats.id', 'meats.ar_name', 
+        'meats.cattels_types_id', 'meats.pic')->take($request->limit)->get();
+       
+        $res = [
+            
+            'dicount'=> $discounts,
+            'new_meats'=> $meats ,
+            'most_order' => $orders,
+    
+         ];
+         return response()->json([
+            $res
         ], 200);
     }
 }

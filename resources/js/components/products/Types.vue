@@ -155,6 +155,7 @@
         openModalWindow(){
            this.editMode = false
            this.form.reset();
+           this.form.clear();
            $('#addNew').modal('show');
         },
 

@@ -74,7 +74,7 @@ Route::get('get_code','Api\UserApi@getCode');
     Route::post('get_user', 'Api\UserApi@getUser');
     Route::post('add_proposal', 'Api\UserApi@add_proposal');
     Route::get('get_meat/{meat}','Api\OrderApi@getMeat');
-
+	Route::get('get_home','Api\OrderApi@home');
     //Orders JWT Routes
     Route::post('get_user_orders/{user}', 'Api\OrderApi@getUserOrder');
     Route::post('get_order/{order}', 'Api\OrderApi@getOrder');

@@ -3,10 +3,14 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-
             <!-- Products tab & slick -->
             <div class="col-md-12">
                 <div class="row">
+                    <div class="col-12">
+                        <h1 class="h2 text-info {{ $locale == 'ar' ? 'text-right' : 'text-left' }}">
+                              {{ trans('sentence.Offer Products') }}
+                        </h1>
+                    </div>
                     <div class="products-tabs">
                         <!-- tab -->
                         <div id="tab1" class="tab-pane active">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrdersMeat;
+use App\OrdersMeatsDiscount;
 use Cart;
 
 use PayPal\Api\Payer;
@@ -50,14 +51,16 @@ class CheckoutController extends Controller
 
     public function placeOrder(Request $request)
     {
-        return $request;
+        $request->validate([
+            'payment'   =>  'required|int',
+            'address'           =>  'required'
+        ]);
         $order = Order::create([
             'user_id'           => auth()->user()->id,
-            'payment_type_id'   =>  1,
-            'lat'               => session()->get('lat'),
-            'lng'               => session()->get('lng')
+            'payment_type_id'   =>  $request->payment,
+            'address'               => $request->address,
+            'dellivery_status_id'               => 1
         ]);
-    
         if ($order) {
     
             $items = Cart::getContent();
@@ -76,28 +79,53 @@ class CheckoutController extends Controller
         }
 
         if ($order) {
-            // Create a new instance of Payer class
+            if ($request->payment != 1) {
+                $items = Cart::getContent();
+    // return $items;
+            foreach ($items as $item)
+            {
+                $orderItem = new OrdersMeat([
+                    'order_id'      =>  $order->id,
+                    'meat_id'       =>  $item->id,
+                    'quantity'      =>  $item->quantity,
+                    'price'         =>  $item->getPriceSum()
+                ]);
+                if($item->attributes->discount){
+                    $orderItem->save();
+                    $discount = new OrdersMeatsDiscount();
+                    $discount->order_id = $order->id;
+                    $discount->meat_id = $item->id;
+                    $discount->discounti_id = $item->attributes->discount_id;
+                    $discount->discount_amount = $item->attributes->discount;
+                    $discount->save();
+                }
+                 
+            }
+            Cart::clear();
+            return redirect('/account/orders')->withSuccess('تم اجرا الطلب بنجاح');
+            }else{
+                // Create a new instance of Payer class
             $payer = new Payer();
             $payer->setPaymentMethod("paypal");
             // Adding items to the list
             $items = array();
-            // foreach ($order->ordersMeats as $item)
-            // {
-            //     $orderItems[$item->id] = new Item();
-            //     $orderItems[$item->id]->setName($item->meat->ar_name)
-            //         ->setCurrency('SAR')
-            //         ->setDescription('buying ' . $item->meat->en_name)
-            //         ->setQuantity($item->quantity)
-            //         ->setPrice($item->price);
+            foreach ($order->ordersMeats as $item)
+            {
+                $orderItems[$item->id] = new Item();
+                $orderItems[$item->id]->setName($item->meat->ar_name)
+                    ->setCurrency('USD')
+                    ->setDescription('buying ' . $item->meat->en_name)
+                    ->setQuantity($item->quantity)
+                    ->setPrice($item->price);
 
-            //     array_push($items, $orderItems[$item->id]);
-            // }
+                array_push($items, $orderItems[$item->id]);
+            }
             $orderItems = new Item();
                 $orderItems->setName('hey')
                     ->setCurrency('USD')
                     ->setDescription('buying ')
                     ->setQuantity($order->ordersMeats->sum('quantity'))
-                    ->setPrice(50);
+                    ->setPrice($item->price);
             $itemList = new ItemList();
             $itemList->setItems([$orderItems]);
             // Create chargeable amount
@@ -134,6 +162,8 @@ class CheckoutController extends Controller
             $approvalUrl = $payment->getApprovalLink();
             return redirect($approvalUrl);
             exit;
+            }
+            
         }
         return redirect()->back()->with('message','Order not placed');
     }
@@ -154,3 +184,5 @@ class CheckoutController extends Controller
     return view('site.checkout.success', compact('order'));
     }
 }
+
+

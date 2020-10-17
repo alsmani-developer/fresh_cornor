@@ -4,11 +4,6 @@
     {{ $search_text }}
 @endsection
 @section('content')
-@php
-    if (session()->has('locale')) {
-            App::setLocale(session()->get('locale'));
-        }
-@endphp
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section rtl-text-right">
     <!-- container -->
@@ -47,6 +42,10 @@
     <!-- /container -->
 </div>
 <!-- /BREADCRUMB -->
+<h2 class="h3 {{ $locale == 'ar' ? 'text-right' : '' }}">
+    @if (Request::segment(1) == 'products-advance-search')
+        {{ trans('sentence.Advanced Search Results') }}
+    @endif
+</h2>
 @include('site.products.demo1')
-
 @endsection

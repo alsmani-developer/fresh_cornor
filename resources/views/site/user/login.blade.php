@@ -3,14 +3,16 @@
 {{ trans('sentence.Login') }}
 @endsection
 @section('content')
-@php
-    if (session()->has('locale')) {
-            App::setLocale(session()->get('locale'));
-        }
-@endphp
-
+<link rel="stylesheet" href="{{ asset('css/intlTelInput.min.css') }}">
 <div class="container section position-relative">
     <div class="row">
+    @isset($_GET['registered'])
+    <div class="alert alert-success font-weight-bold text-center col-12">
+      لقد تم تسجيل حسابك بنجاح. 
+      <br>
+      الرجاء تسجيل الدخول لكي تتمكن من دخول حسابك
+    </div>
+  @endisset
     <form method="POST" action="{{ route('loginUser') }}" 
     class="col-sm-6 col-sm-offset-3 position-relative rtl-text-right">
       @csrf
@@ -27,7 +29,7 @@
       <label for="phone">
           {{ trans('sentence.Phone Number') }}
       </label>
-      <input type="text" class="form-control" id="phone" name="phone"
+      <input type="tel" class="form-control" id="phone" name="phone"
        placeholder="{{ trans('sentence.Phone Number') }}">
        @if ($errors->has('password'))
       <span class="error">{{ $errors->first('phone') }}</span>
@@ -45,7 +47,7 @@
     <div class="form-group">
     <div class="mt-4">
       <div class="w-100">
-        <ul class="list-inline">
+        <ul class="list-inline w-100">
       <button type="submit" class="btn btn-primary active w-50">
           {{ trans('sentence.Login') }}
       </button>
@@ -69,5 +71,17 @@
     </form> 
     </div>
     </div>
-
+    <script src="{{ asset('js/intlTelInput.min.js') }}"></script>
+    <script>
+      $(document).ready(function() {
+    var input = document.querySelector("#phone");
+    var iti = intlTelInput(input, {
+            // any initialisation options go here
+            utilsScript: '{{ asset("js/utils.js") }}',
+            initialCountry: 'SA',
+            preferredCountries: ['SA', 'UAE', 'SD'],
+            hiddenInput: "full",
+          });
+        })
+    </script>
 @endsection

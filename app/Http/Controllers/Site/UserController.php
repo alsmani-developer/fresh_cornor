@@ -22,7 +22,8 @@ class UserController extends Controller
         return view('site.user.register');
     }
     public function loginUser(Request $request){
-        
+        $phone = preg_replace('/\s+/', '', $request->full);
+        $request_only =  ['password' => $request->password, 'phone' => $phone];
         $request->validate([
             'phone' => 'required',
             'password' => 'required'
@@ -31,28 +32,31 @@ class UserController extends Controller
             'phone.required' => 'رقم الهاتف المدخل غير صحيح',
             'password.required' => 'كلمة السر المدخلة غير صحيحة'
         ]);
-            $credentials = $request->only('phone', 'password');
+            $credentials = $request_only;
 
             if (Auth::attempt($credentials)) {
                 // Authentication passed...
-                return redirect()->intended('/');
+                return redirect()->intended('/user-profile');
             }
             return back()->with('error', 'احد الحقول المدخلة غير صحيح');
     }
     public function registerUserFirstStep(Request $request){
-        
+        $country_code = '+'.$_GET['code'];
+        $number = $country_code.$request->phone;
+        $number = preg_replace('/\s+/', '', $number);
+        $send = $_GET['code'].$request->phone;
         request()->validate([
         'user' => 'required',
         'email' => 'nullable|email',
-        'phone' => 'required|int',
+        'phone' => 'required',
         'password' => 'required|min:6'
         ]);
-        $response = $this->verfiyPhoneNumber($request->phone);
+        $response = $this->verfiyPhoneNumber($send);
         if($response =="OK"){
         session()->put("user", $request->user);
         session()->put("password", $request->password);
         session()->put("email", $request->email);
-        session()->put("phone", $request->phone);
+        session()->put("phone", $number);
         }else{
             return redirect()->back()->withErrors('حدث خطا الرجا المحاولة لاحقا');
         }
@@ -100,7 +104,6 @@ class UserController extends Controller
       public function getOrders()
       {
           $orders = auth()->user()->orders;
-  
           return view('site.user.orders', compact('orders'));
       }
       public function getUser(){

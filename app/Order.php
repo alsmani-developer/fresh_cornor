@@ -18,6 +18,10 @@ class Order extends Model
         return $this->hasMany(OrdersMeat::class);
     }
     public  function status(){
-        return $this->belongsTo(DeliveriesStatus::class);
+        return $this->belongsTo(DeliveriesStatus::class, 'status_id');
+    }
+    public function discount()
+    {
+        return $this->hasOne(OrdersMeatsDiscount::class, 'order_id');
     }
 }

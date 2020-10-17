@@ -15,7 +15,7 @@
     <div class="product-preview2">
         <img src="{{ asset('images/'.$discount->pic) }}" 
         alt="{{ $locale === 'ar' ? $discount->ar_name : $discount->en_name }}"
-         height="400">
+         height="280">
     </div>
     </div>
     </div>

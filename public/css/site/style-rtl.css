@@ -36,6 +36,8 @@
 }
 
 .header-search form .input {
+    width: calc(100% - 116px);
+    
     text-align: right;
 }
 
@@ -107,5 +109,29 @@
   }
   .adv_search_btn{
     float: left;
-    margin-left: 58px;
+    margin-left: 13px;
+  }
+  .iti__country-list{
+    text-align: right !important;
+  }
+  .iti__selected-flag{
+    padding: 0 11px 0 8px !important;
+  }
+  .iti--allow-dropdown .iti__flag-container, .iti--separate-dial-code .iti__flag-container{
+      right: 0 !important;
+      left: auto !important;
+  }
+  .iti--allow-dropdown input, .iti--allow-dropdown input[type="tel"], .iti--allow-dropdown input[type="text"], .iti--separate-dial-code input, .iti--separate-dial-code input[type="tel"], .iti--separate-dial-code input[type="text"]{
+    padding-left: 6px !important;
+    padding-right: 52px !important;
+    margin-right: 0 !important;
+    text-align: right !important;
+  }
+  .iti__arrow{
+      margin-right: 3px;
+  }
+  .ordercountbadge{
+    position: absolute;
+    top: 5px;
+  left: 10px;
   }

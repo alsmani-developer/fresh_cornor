@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App;
 use App\CattlesType;
+use App\CattlesOrigin;
+use App\MeatsArea;
+use App\MeatsShape;
 use Cart;
 class ViewServiceProvider extends ServiceProvider
 {
@@ -44,7 +47,12 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('locale', $locale);
         });
         view()->composer('site.inc.header', function ($view) {
-            $view->with('cartCount', Cart::getContent()->count());
+            $CattlesOrigins = CattlesOrigin::get();
+            $MeatsAreas = MeatsArea::get();
+            $MeatsShapes = MeatsShape::get();
+            $data = ['cartCount' => Cart::getContent()->count(), 'CattlesOrigins' => $CattlesOrigins,
+            'MeatsAreas' => $MeatsAreas, 'MeatsShapes' => $MeatsShapes];
+            $view->with($data);
         });
     }
 }

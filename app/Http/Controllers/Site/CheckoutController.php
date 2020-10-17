@@ -6,42 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrdersMeat;
+use App\OrdersMeatsDiscount;
 use Cart;
-
-use PayPal\Api\Payer;
-use PayPal\Api\Item;
-use Mockery\Exception;
-use PayPal\Api\Amount;
-use PayPal\Api\Payment;
-use PayPal\Api\Details;
-use PayPal\Api\ItemList;
-use PayPal\Rest\ApiContext;
-use PayPal\Api\Transaction;
-use PayPal\Api\RedirectUrls;
-use PayPal\Api\PaymentExecution;
-use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Exception\PayPalConnectionException;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 class CheckoutController extends Controller
 {
-    private $ApiContext;
-    private $OAuthTokenCredential;
-    public function __construct()
-    {
-        if(config('paypal.settings.mode') == 'live'){
-            $this->clientId = config('paypal.live_client_id');
-            $this->secret = config('paypal.live_secret');
-        }else{
-            $this->clientId = config('paypal.sandbox_client_id');
-            $this->secret = config('paypal.sandbox_secret');
-        }
-        $this->ApiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->secret));
-        $this->ApiContext->setConfig(config('paypal.settings'));
-    }
-    public function saveLatLng(Request $request){
-        session()->put('lat', $request->lat);
-        session()->put('lng', $request->lng);
-        echo 'lat: ' . session()->get('lat') . ' | lng: ' . session()->get('lng');
-    }
     public function getCheckout()
     {
         // return session()->all();
@@ -50,13 +19,16 @@ class CheckoutController extends Controller
 
     public function placeOrder(Request $request)
     {
+        $request->validate([
+            'payment'   =>  'required|int',
+            'address'           =>  'required'
+        ]);
         $order = Order::create([
             'user_id'           => auth()->user()->id,
-            'payment_type_id'   =>  $request->cash,
+            'payment_type_id'   =>  $request->payment,
             'address'               => $request->address,
             'dellivery_status_id'               => 1
         ]);
-    
         if ($order) {
     
             $items = Cart::getContent();
@@ -72,17 +44,53 @@ class CheckoutController extends Controller
                 
                  $orderItem->save();
             }
-            return redirect('/checkout/payment/complete')->withSuccess('تم اجرا الطلب بنجاح');
+            if ($request->payment != 1) {
+                $items = Cart::getContent();
+    // return $items;
+            foreach ($items as $item)
+            {
+                if($item->attributes->discount){
+                    $orderItem->save();
+                    $discount = new OrdersMeatsDiscount();
+                    $discount->order_id = $order->id;
+                    $discount->meat_id = $item->id;
+                    $discount->discounti_id = $item->attributes->discount_id;
+                    $discount->discount_amount = $item->attributes->discount;
+                    $discount->save();
+                }
+                 
+            }
+            Cart::clear();
+            return redirect('/account/orders')->withSuccess('تم اجرا الطلب بنجاح');
+            }else{
+                // return $request->stripeToken;
+                $charge = Stripe::charges()->create([
+                    'currency'  => 'SAR',
+                    'source'    => $request->stripeToken,
+                    'amount'    => $order->ordersMeats->sum('price')*$order->ordersMeats->sum('quantity'),
+                    'description'=> 'Buying from fresh corner'
+                ]);
+                $chargeId = $charge['id'];
+                if($chargeId){
+                    $order->status_id = 3;
+                    $order->update();
+                    Cart::clear();
+                    return redirect('/account/orders')->withSuccess('تم اجرا الطلب بنجاح');
+                }else{
+                    $order->status_id = 0;
+                    $order->update();
+                    return redirect()->back()->with('message','Order not placed');
+                }
+            }
         }
-
-       
         return redirect()->back()->with('message','Order not placed');
     }
-    public function complete(Request $request)
-    {
-    $order = Order::where('user_id', auth()->user()->id)->first();
-
-    Cart::clear();
-    return view('site.checkout.success', compact('order'));
+    public function stripeCheckout(Order $order){
+        return view('site.checkout.stripe', compact('order'));
+    }
+    public function charge(Request $request){
+        
     }
 }
+
+

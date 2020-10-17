@@ -9,8 +9,12 @@ return [
   'Search' => 'Search',
   'Search Here' => 'Search Here',
   'Advanced Search' => 'Advanced Search',
+  'Advanced Search Results' =>  'Advanced Search Results',
   'All Categories' => 'All Categories',
   'Category' => 'Category',
+  'Country' => 'Country',
+  'Meats Areas' => 'Meats Areas',
+  'Meats Shape' => 'Meats Shape',
   'Home Page' => 'Home Page',
   'Discount And Offers' => 'Discount And Offers',
   'Beef' => 'Beef',
@@ -117,4 +121,5 @@ return [
   'Shipping Address' => 'Shipping Address',
   'Name' => 'Name',
   'Full Address' => 'Full Address',
+  'Offer Products' => 'Offer Products',
 ];

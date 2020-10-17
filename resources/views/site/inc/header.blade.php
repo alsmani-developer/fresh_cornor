@@ -52,7 +52,7 @@
             <!-- row -->
             <div class="row">
                 <!-- LOGO -->
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="header-logo">
                         <a href="/" class="logo text-light">
                             <h3 class="text-light">
@@ -64,11 +64,11 @@
                 <!-- /LOGO -->
 
                 <!-- SEARCH BAR -->
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="header-search">
                         <form method="GET" action="{{ route('products.search-result') }}">
                             @csrf
-                            <select class="input-select" name="search_cate">
+                            {{-- <select class="input-select" name="search_cate">
                                 <option value="0">
                                     {{ trans('sentence.All Categories') }}
                                 </option>
@@ -85,7 +85,7 @@
                                     </option>
                                     @endforeach
                                 @endif
-                            </select>
+                            </select> --}}
                             <input class="input" placeholder="{{ trans('sentence.Search Here')}}" 
                             name="search_text">
                             <button class="search-btn" type="submit">
@@ -239,50 +239,84 @@
     <!-- /MAIN HEADER -->
 </header>
 <!-- /HEADER -->
-<div class="jumbotron d-none" id="adv_search_form">
+<form class="jumbotron d-none" id="adv_search_form" action="{{ route('products.adv-search-result') }}" method="GET">
     <div class="container" dir="rtl" style="margin-left:11%">
         <div class="row w-100" id="search">
-                <div class="form-group col-xs-2">
-                    <button type="submit" class="btn btn-block btn-primary w-100">Search</button>
+                <div class="form-group col-xs-2 pr-0">
+                    <button type="submit" class="btn btn-block btn-info w-100">
+                        {{ trans('sentence.Search') }}
+                    </button>
                 </div>
-                <div class="form-group col-xs-9">
-                    <input class="form-control" type="text" placeholder="Search" />
+                <div class="form-group col-xs-10 pl-0">
+                    <input class="form-control" type="text" 
+                    placeholder="{{ trans('sentence.Search') }}" name="name"/>
                 </div>
         </div>
         <div class="row w-100" id="filter">
+            {{-- <div class="form-group col-sm-1 col-xs-0">
+                <input type="text" name="price_min" placeholder="ادنى سعر" class="form-control">
+            </div>
+            <div class="form-group col-sm-1 col-xs-0">
+                <input type="text" name="price_max" placeholder="اعلى سعر" class="form-control">
+            </div> --}}
                 <div class="form-group col-sm-3 col-xs-6">
-                    <select data-filter="make" class="filter-make filter form-control">
-                        <option value="">Select Make</option>
-                        <option value="">Show All</option>
+                    <select data-filter="make" class="filter-make filter form-control" name="cattels_types_id">
+                        <option value="">
+                            {{ trans('sentence.Category') }}
+                        </option>
+                        @foreach ($CattlesType as $type)
+                        <option value="{{ $type->id }}">
+                            {{ $locale == 'ar' ? $type->ar_name : $type->en_name }}
+                        </option>
+                        @endforeach
                     </select>
                 </div>
-                <div class="form-group col-sm-2 col-xs-6">
-                    <select data-filter="model" class="filter-model filter form-control">
-                        <option value="">Select Model</option>
-                        <option value="">Show All</option>
+                <div class="form-group col-sm-3 col-xs-6">
+                    <select data-filter="model" class="filter-model filter form-control" name="cattles_origins_id">
+                        <option value="">{{ trans('sentence.Country') }}</option>
+                        @forelse ($CattlesOrigins as $CattlesOrigin)
+                        <option value="{{ $CattlesOrigin->id }}">
+                            {{ $locale == 'ar' ? $CattlesOrigin->ar_name : $CattlesOrigin->en_name }}
+                        </option>
+                        @empty
+                            
+                        @endforelse
                     </select>
                 </div>
-                <div class="form-group col-sm-2 col-xs-6">
-                    <select data-filter="type" class="filter-type filter form-control">
-                        <option value="">Select Type</option>
-                        <option value="">Show All</option>
+                <div class="form-group col-sm-3 col-xs-6">
+                    <select data-filter="type" class="filter-type filter form-control" name="meats_areas_id">
+                        <option value="">{{ trans('sentence.Meats Areas') }}</option>
+                        @forelse ($MeatsAreas as $MeatsArea)
+                            <option value="{{ $MeatsArea->id }}">
+                            {{ $locale == 'ar' ? $MeatsArea->ar_name : $MeatsArea->en_name }}
+                            </option>
+                        @empty
+                        @endforelse
                     </select>
                 </div>
-                <div class="form-group col-sm-2 col-xs-6">
+                <div class="form-group col-sm-3 col-xs-6">
+                    <select data-filter="price" class="filter-price filter form-control" name="meats_shapes_id">
+                        <option value="">
+                        {{ trans('sentence.Meats Shape') }}
+                        </option>
+                        @forelse ($MeatsShapes as $MeatsShape)
+                            <option value="{{ $MeatsShape->id }}">
+                            {{ $locale == 'ar' ? $MeatsShape->ar_name : $MeatsShape->en_name }}
+                            </option>
+                        @empty
+                            
+                        @endforelse
+                    </select>
+                </div>
+                {{-- <div class="form-group col-sm-2 col-xs-6">
                     <select data-filter="price" class="filter-price filter form-control">
                         <option value="">Select Price Range</option>
                         <option value="">Show All</option>
                     </select>
-                </div>
-                <div class="form-group col-sm-2 col-xs-6">
-                    <select data-filter="price" class="filter-price filter form-control">
-                        <option value="">Select Price Range</option>
-                        <option value="">Show All</option>
-                    </select>
-                </div>
+                </div> --}}
         </div>
         </div>
-    </div>
+    </form>
 
     <script>
         $(document).ready(function(){

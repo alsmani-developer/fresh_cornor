@@ -10,8 +10,12 @@ return [
   'Search Here' => 'ٌإبحث هنا',
   'Search Results' => 'نتائج البحث',
   'Advanced Search' => 'بحث متقدم',
+  'Advanced Search Results' => 'نتائج البحث المتقدم',
   'All Categories' => 'كل الانواع',
   'Category' => 'الصنف',
+  'Country' => 'الدولة',
+  'Meats Areas' => 'مناطق اللحم',
+  'Meats Shape' => 'شكل اللحم',
   'Home Page' => 'الصفحة الرئيسية',
   'Discount And Offers' => 'عروض وتخفيضات',
   'Beef' => 'لحم البقر',
@@ -119,4 +123,5 @@ return [
   'Edit Cart' => 'تعديل السلة',
   'Shipping Address' => 'عنوان التوصيل',
   'Full Address' => 'العنوان كامل',
+  'Offer Products' => 'منتجات العرض',
 ];

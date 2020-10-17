@@ -119,16 +119,23 @@ color: #bdbdbd;
 .bg-danger{
   background-color: #ff4444 !important;
 }
+.bg-dark{
+  background-color: #333;
+}
 .bg-success{
   background-color: #00c851 !important;
 }
 .text-white{
   color: #fff !important;
 }
+.bg-white{
+  background-color: #fff;
+}
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color: #333;
+  overflow-x: hidden;
 }
 .text-light{
   color: #FFF;
@@ -553,8 +560,9 @@ textarea.input {
 }
 
 .header-search form .input {
-  width: calc(100% - 260px);
+  width: calc(100% - 166px);
   margin-right: -4px;
+  border-radius: 5px 0 0;
 }
 
 .header-search form .search-btn {
@@ -944,11 +952,13 @@ textarea.input {
   box-shadow: 0px 0px 0px 0px #E4E7ED, 0px 0px 0px 1px #E4E7ED;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
+  border: 1px solid #111111;
 }
 
 .product:hover {
-  -webkit-box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
-  box-shadow: 0px 0px 6px 0px #E4E7ED, 0px 0px 0px 2px #D10024;
+    border: none;
+  -webkit-box-shadow: 0px 0px 6px 0px #00c851, 0px 0px 0px 2px #00c851;
+  box-shadow: 0px 0px 6px 0px #00c851, 0px 0px 0px 2px #00c851;
 }
 
 .product .product-img {
@@ -957,6 +967,7 @@ textarea.input {
 
 .product .product-img>img {
   width: 100%;
+  height: 240px;
 }
 
 .product .product-img .product-label {
@@ -2514,7 +2525,7 @@ textarea.input {
 }
 .adv_search_btn{
   float: right;
-  margin-right: 17px;
+  margin-right: 62px;
   color: white !important;
   background: inherit;
   border: 0;
@@ -2827,9 +2838,152 @@ hr{
   }
   
 }
-/*
-@media only screen and (max-width: 777px){
-  .container{
-      overflow-x: hidden;
-  }
-}*/
+
+
+/* Carousel Styles */
+.carousel-indicators .active {
+  background-color: #2980b9;
+}
+
+.carousel-inner img {
+  width: 100%;
+  max-height: 460px
+}
+
+.carousel-control {
+  width: 0;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+opacity: 1;
+filter: alpha(opacity=100);
+background-image: none;
+background-repeat: no-repeat;
+text-shadow: none;
+}
+
+.carousel-control.left span {
+padding: 15px;
+}
+
+.carousel-control.right span {
+padding: 15px;
+}
+
+.carousel-control .fa-arrow-left, 
+.carousel-control .fa-arrow-right, 
+.carousel-control .icon-prev, 
+.carousel-control .icon-next {
+position: absolute;
+top: 45%;
+z-index: 5;
+display: inline-block;
+
+}
+
+.carousel-control .fa-arrow-left,
+.carousel-control .icon-prev {
+left: 15px;
+}
+
+.carousel-control .fa-arrow-right,
+.carousel-control .icon-next {
+right: 25px;
+}
+
+.carousel-control.left span,
+.carousel-control.right span {
+background-color: #ccc;
+color: #fff;
+border-radius: 50%;
+}
+
+.carousel-control.left span:hover,
+.carousel-control.right span:hover {
+opacity: .7;
+filter: alpha(opacity=70);
+}
+
+/* Carousel Header Styles */
+.header-text {
+  position: absolute;
+  top: 20%;
+  left: 1.8%;
+  right: auto;
+  width: 96.66666666666666%;
+  color: #fff;
+}
+
+.header-text h2 {
+  font-size: 40px;
+}
+
+.header-text h2 span {
+  background-color: #2980b9;
+padding: 10px;
+}
+
+.header-text h3 span {
+background-color: #000;
+padding: 15px;
+}
+
+.btn-min-block {
+  min-width: 170px;
+  line-height: 26px;
+}
+
+.btn-theme {
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  margin-right: 15px;
+}
+
+.btn-theme:hover {
+  color: #000;
+  background-color: #fff;
+  border-color: #fff;
+}
+.iti{
+  width: 100% !important;
+}
+.ordercountbadge{
+  position: absolute;
+  top: 5px;
+right: 10px;
+width: 30px;
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+ .StripeElement {
+  box-sizing: border-box;
+
+  height: 60px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}

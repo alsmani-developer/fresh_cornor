@@ -1,6 +1,7 @@
 @extends('site.layouts.app')
 @section('page-title', trans('sentence.Shopping Cart'))
 @section('content')
+{{-- {{ dd(\Cart::getContent()) }} --}}
     <section class="section-pagetop bg-dark mt-3 pb-2">
         <div class="container clearfix">
             <h2 class="title-page rtl-text-center">
@@ -46,8 +47,11 @@
                                         <td>
                                             <figure class="media">
                                                 <figcaption class="media-body">
-                                                    <h6 class="title text-truncate">
-                                                        {{ Str::words($item->name,20) }}</h6>
+                                                    <h5 class="title text-truncate">
+                                                        <a href="/product/{{ $item->id }}" class="text-info">
+                                                            {{ Str::words($item->name,20) }}
+                                                        </a>
+                                                    </h5>
                                                 </figcaption>
                                             </figure>
                                         </td>
@@ -58,8 +62,23 @@
                                         </td>
                                         <td>
                                             <div class="price-wrap">
-                                                <var class="price">
-                                                    {{ $item->price }} {{ trans('sentence.Rial  For KG') }}</var>
+                                                <var class="price text-success">
+                                                    @empty($item->attributes->discount)
+                                                    {{ $item->price }} {{ trans('sentence.Rial  For KG') }}
+                                                    <span class="float-left">
+                                                        {{ trans('sentence.Rial  For KG') }}
+                                                    </span>
+                                                    @else 
+                                                <del class="text-divider">
+                                                {{ $item->price }} {{ trans('sentence.Rial  For KG') }}
+                                                </del> <br>
+                                                {{  $item->price - $item->attributes->discount / 
+                                                    ($item->price * 100) }}
+                                                    <span class="float-left">
+                                                        {{ trans('sentence.Rial  For KG') }}
+                                                    </span>
+                                                    @endempty
+                                                    </var>
                                             </div>
                                         </td>
                                         <td class="text-right">
@@ -77,44 +96,18 @@
                     <a href="{{ route('checkout.cart.clear') }}" class="btn btn-danger btn-block mb-4">
                         {{ trans('sentence.Clear Cart') }}
                     </a>
-                    <p class="alert alert-success text-center">
+                    {{-- <p class="alert alert-success text-center">
                         {{ trans('sentence.If a discount') }}
-                    </p>
+                    </p> --}}
                     <dl class="dlist-align h4">
-                        <dt class="rtl-text-right">{{ trans('sentence.Total') }}:</dt>
+                        {{-- <dt class="rtl-text-right">{{ trans('sentence.Total') }}:</dt>
                         <dd class="text-right rtl-text-left">
                             <strong>{{ \Cart::getSubTotal() }} {{ trans('sentence.Rial') }}
-                            </strong></dd>
+                            </strong></dd> --}}
                     </dl>
-                    <hr>
-                    <dt class="rtl-text-right">{{ trans('sentence.Payment Methods') }}:</dt>
-                    <form action="{{ route('checkout.index') }}" method="post">
-                    <div class="form-group rtl-text-right position-relative">
-                      <div class="w-100">
-                        <input type="checkbox" name="paypal" id="paypal" value="1"
-                        aria-describedby="helpId">
-                        <label for="paypal">
-                          الدفع الالكتروني
-                          <div class="tooltip"><i class="fa fa-info-circle"></i>
-                            <span class="tooltiptext">
-                                ادفع باستخدام
-                                <br>
-                                <i class="fa fa-cc-mastercard" aria-hidden="true"></i>
-                                {{ trans('sentence.Pay With Master Card') }} |
-                                <i class="fa fa-cc-visa h3"></i>
-                                {{ trans('sentence.Pay with Visa Card') }} |
-                                <i class="fa fa-paypal h3"></i>
-                                PayPal
-                            </span>
-                          </div> 
-                          
-                          </label>
-                      </div>
-                    </div>
-                    <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg btn-block">
-                        {{ trans('sentence.Proceed To Checkout') }}
+                    <a href="/checkout" class="btn btn-success btn-block">
+                    {{ trans('sentence.Proceed To Checkout') }}
                     </a>
-                </form>
                 </aside>
             </div>
         </div>

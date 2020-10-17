@@ -108,4 +108,33 @@ class ProductController extends BaseController
         }
         return view('site.products.search-results', compact('get_meats', 'get_cats', 'search_text'));
     }
+    public function advSearchProducts(Request $request){
+        $get_cats = '';
+        $search_text = $request->name;
+        $get_cats = CattlesType::find($request->cattels_types_id);
+        try {
+            $input = collect($request->except('_token', 'name'))->filter(function($value){
+                return null !== $value;
+            })->toArray();
+            if (empty($request->name)) {
+                $get_meats = Meat::where($input)->paginate(15);
+            } else {
+                $get_meats = Meat::where($input)->where('ar_name', 'LIKE', '%'.$request->name.'%')->paginate(15);
+                if(!$get_meats){
+                $get_meats = Meat::where($input)->where('en_name', 'LIKE', '%'.$request->name.'%')->paginate(15);
+                    
+                }
+            }
+            
+            $data = [
+                'get_meats'     => $get_meats,
+                'get_cats'      => $get_cats,
+                'search_text'   => $search_text
+            ];
+            // return $input;
+            return view('site.products.search-results')->with($data);
+        } catch (\Throwable $th) {
+            return $th;
+        }
+    }
 }

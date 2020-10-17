@@ -74,6 +74,14 @@
         </p>
         <form class="add-to-cart" action="/add-to-cart" method="POST">
             @csrf
+            @isset($get_meat->discount_meat->last()->discount->amount)
+            <input type="hidden" name="discount" 
+            value="{{ $get_meat->discount_meat->last()->discount->amount }}">
+            <input type="hidden" name="discount_id" 
+            value="{{ $get_meat->discount_meat->last()->discount->id }}">
+            @else 
+            <input type="hidden" name="discount" value="">
+            @endisset
             <input type="hidden" name="productId" value="{{ $get_meat->id }}">
             <input type="hidden" name="ar_name" value="{{ $get_meat->ar_name }}">
             <input type="hidden" name="pic" value="{{ asset('images/'. $get_meat->pic) }}">

@@ -3,11 +3,7 @@
     {{ trans('sentence.Register') }}
 @endsection
 @section('content')
-@php
-    if (session()->has('locale')) {
-            App::setLocale(session()->get('locale'));
-        }
-@endphp
+<link rel="stylesheet" href="{{ asset('css/intlTelInput.min.css') }}">
 
 <div class="container section position-relative">
     <div class="row">
@@ -31,11 +27,12 @@
             placeholder="{{ trans('sentence.Username') }}" required>
         </div>
       <div class="form-group">
-      <label for="phone">
+      <label for="phone" class="w-100">
           {{ trans('sentence.Phone Number') }}
       </label>
-      <input type="text" class="form-control" id="phone" name="phone"
+      <input type="tel" class="form-control text-left" id="phone" name="phone"
        placeholder="{{ trans('sentence.Phone Number') }}" required>
+       <div class="iti-error"></div>
       </div>
       <div class="form-group">
         <label for="email">
@@ -44,13 +41,6 @@
         <input type="text" class="form-control" id="email" name="email"
             placeholder="{{ trans('sentence.Email') }}">
         </div>
-        {{-- <div class="form-group">
-            <label for="address">
-                {{ trans('sentence.Address') }}
-            </label>
-            <input type="text" class="form-control" id="address" name="address"
-                placeholder="{{ trans('sentence.Address') }}">
-            </div> --}}
     <div class="form-group mt-2">
       <label for="password"> 
           {{ trans('sentence.Password') }}
@@ -62,7 +52,7 @@
     <div>
       <div class="w-100">
         <ul class="list-inline">
-      <button type="submit" class="btn btn-primary active w-100">
+      <button type="submit" id="registersubmitbtn_first_stip" class="btn btn-primary active w-100">
           {{ trans('sentence.Register') }}
       </button>
         </ul>
@@ -131,13 +121,27 @@
     });
 });
 </script>
+<script src="{{ asset('js/intlTelInput.min.js') }}"></script>
 <script type="text/javascript">
   $(document).ready(function() {
+    var input = document.querySelector("#phone");
+    var iti = intlTelInput(input, {
+            // any initialisation options go here
+            utilsScript: '{{ asset("js/utils.js") }}',
+            initialCountry: 'SA',
+            preferredCountries: ['SA', 'UAE', 'SD'],
+            hiddenInput: "full",
+          });
       $('#register_user_step_1').submit(function(e) {
           e.preventDefault();
-          // setup some local variables
+          var number = iti.getSelectedCountryData();
+          var isValid = iti.isValidNumber();
+          if (isValid == false) {
+            $(".iti-error").addClass('alert alert-danger');
+            $('.iti-error').html('رقم الهاتف المدخل غير صحيح');
+          } else {
+            // setup some local variables
           var $form = $(this);
-
           // Let's select and cache all the fields
           var $inputs = $form.find("input, button");
 
@@ -145,14 +149,17 @@
           var serializedData = $form.serialize();
           $.ajax({
               type: "post",
-              url: '{{url("/register")}}',
+              url: '{{url("/register?code=")}}'+number.dialCode,
               data: serializedData,
               success: function(data)
               {
+                  $("#registersubmitbtn_first_stip").attr("disabled", true); 
                   $('#register_user_step_1').addClass('d-none');
                   $('#register_user_step_2').removeClass('d-none');
               }
-      });
+          });
+          }
+          
       });
       
 

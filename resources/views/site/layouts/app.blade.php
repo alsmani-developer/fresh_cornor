@@ -4,6 +4,7 @@
 <body>
     @include('site.inc.header')
     @include('site.inc.nav')
+    @yield('slider')
     <div class="container">
     <div id="app">
         <main class="py-4">

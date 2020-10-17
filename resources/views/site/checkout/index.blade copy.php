@@ -126,8 +126,7 @@
                                         <div class="mr-1">
                                             <div class="form-group rtl-text-right position-relative">
                                               <div class="w-100">
-                                                <input type="checkbox" name="paypal" id="paypal" value="1"
-                                                aria-describedby="helpId">
+                                                <input type="radio" name="paypal" id="" value="1>
                                                 <label for="paypal">
                                                   الدفع الالكتروني
                                                   <div class="tooltip"><i class="fa fa-info-circle"></i>
@@ -148,7 +147,7 @@
                                             </div>
                                             <div class="form-group rtl-text-right position-relative">
                                                 <div class="w-100">
-                                                  <input type="checkbox" name="cash" id="cash" value="2">
+                                                  <input type="radio" name="cash" id="" value="2">
                                                   <label for="cash">
                                                     الدفع عن التوصيل
                                                     <div class="tooltip"><i class="fa fa-info-circle"></i>

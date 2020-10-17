@@ -11,11 +11,23 @@
         "php": "^7.2",
         "bitfumes/laravel-multiauth": "^3.0",
         "darryldecode/cart": "^4.2",
+<<<<<<< HEAD
+        "doctrine/dbal": "^2.11",
+=======
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
         "fideloper/proxy": "^4.0",
         "ixudra/curl": "^6.17",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "paypal/rest-api-sdk-php": "^1.14",
+<<<<<<< HEAD
+=======
+=======
+
+        "paypal/rest-api-sdk-php": "^1.14",
+
+>>>>>>> f3b609bc000b562a3e80f9649b9109728fe7e12b
+>>>>>>> ef05e9156db3ed0675a6dc2b634be3175d364ece
         "pusher/pusher-php-server": "^4.1",
         "tymon/jwt-auth": "dev-develop",
         "cartalyst/stripe-laravel": "^11.0"

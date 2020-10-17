@@ -8,6 +8,7 @@ class Discount extends Model
 {
     public $timestamps  = false;
     protected $guarded=[];
+
     public function discountsMeat(){
     	return $this->hasMany('App\DiscountsMeat', 'discount_id');
     }
@@ -19,7 +20,12 @@ class Discount extends Model
     public function discountsQuantity(){
         return $this->hasMany('App\DiscountsQuantity', 'discount_id');
     }
+
+
     public function meats(){
         return $this->belongsToMany('App\Meat', 'discounts_meats', 'discount_id', 'meat_id');
     }
+
+
+  
 }

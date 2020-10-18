@@ -57,12 +57,21 @@ Route::apiResources(
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('stock_opration','VueAPI\StokController@getOprations')->name('oprations');
 Route::get('get_orders','Api\OrderApi@getAllOrders')->name('get_orders');
 Route::get('get_users','Api\UserApi@getAllUsers')->name('get_users');
+Route::get('get_stock','VueAPI\StokController@index')->name('get_stock');
+Route::get('edit_quantity','VueAPI\StokController@increseQnt')->name('edit_quantity');
+Route::PATCH('edit_quantity/{stocks}','VueAPI\StokController@increseQnt');
 //user routes 
 Route::post('login', 'Api\UserApi@login');
 Route::post('verfy','Api\UserApi@verfyPhoneNumber');
-Route::post('register', 'Api\UserApi@register');
+Route::post('register', 'Api\UserApi@register')->name('user_register');
+Route::patch('updaye_user/{user}', 'UserController@update');
+Route::get('update_user', 'UserController@update')->name('user_update');
+Route::get('get_dirvers', 'UserController@getDrivers')->name('get_dirvers');
+Route::post('add_order_to_driver','Api\OrderApi@addOrderToDriver')->name('add_order_to_driver');
+Route::patch('edit_order_to_driver','Api\OrderApi@editOrderToDriver')->name('edit_order_to_driver');
 Route::get('get_code','Api\UserApi@getCode');
 
 

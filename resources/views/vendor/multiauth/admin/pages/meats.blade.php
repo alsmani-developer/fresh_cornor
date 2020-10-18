@@ -22,7 +22,9 @@
           type : '{{route('get_type')}}',
           origin : '{{route('get_origin')}}',
           area : '{{route('get_area')}}',
-          upload_image:'{{route('upload_img')}}'
+          upload_image:'{{route('upload_img')}}',
+          deActivate : '{{route('de_activate')}}',
+          activate : '{{route('activate')}}',
           } "    
       >
       </meat-component>

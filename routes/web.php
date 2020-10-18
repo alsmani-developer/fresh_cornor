@@ -2,6 +2,7 @@
 use App\Type;
 use App\Field;
 use App\Package;
+use App\StockOperation;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,25 +34,7 @@ Route::post('/remove-favorite/{product_id}', 'Site\UserController@removeFromFav'
 // Route::post('/registerUserLastStep', 'Site\UserController@registerUserLastStep')->name('registerUserLastStep');
 Route::get('/ajax/register-new-user-last-step', 'Site\UserController@registerUserLastStep');
 Route::get('/logout', 'Site\UserController@logout');
-Route::get('manege_types',function(){
-    return view('vendor.multiauth.admin.pages.type');
-})->name('types');
 
-Route::get('manege_meat',function(){
-    return view('vendor.multiauth.admin.pages.meats');
-})->name('meats'); 
-
-Route::get('manege_cattle_origin',function(){
-    return view('vendor.multiauth.admin.pages.cattle_origin');
-})->name('origin');
-
-Route::get('manege_meat_shape',function(){
-    return view('vendor.multiauth.admin.pages.meat_shape');
-})->name('meat_shape');
-
-Route::get('manege_meate_aera',function(){
-    return view('vendor.multiauth.admin.pages.meate_area');
-})->name('meat_aera');
 
 Route::post('/add-to-cart', 'Site\ProductController@addToCart');
 Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
@@ -65,17 +48,50 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/account/orders', 'Site\UserController@getOrders')->name('account.orders');
 });
 
+//dashboad route
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::get('manege_discounts',function(){
+        return view('vendor.multiauth.admin.pages.discounts');
+    })->name('discounts');
 
-Route::get('manege_discounts',function(){
-    return view('vendor.multiauth.admin.pages.discounts');
-})->name('discounts');
+    Route::get('manege_stocks',function(){
+        return view('vendor.multiauth.admin.pages.stocks');
+    })->name('stocks');
 
-Route::get('manege_orders',function(){
-    return view('vendor.multiauth.admin.pages.orders');
-})->name('orders');
+    Route::get('manege_orders',function(){
+        return view('vendor.multiauth.admin.pages.orders');
+    })->name('orders');
 
+    Route::get('manege_types',function(){
+        return view('vendor.multiauth.admin.pages.type');
+    })->name('types');
 
-Route::get('manege_users',function(){
-    return view('vendor.multiauth.admin.pages.users');
-})->name('users');
+    Route::get('manege_meat',function(){
+        return view('vendor.multiauth.admin.pages.meats');
+    })->name('meats'); 
+
+    Route::get('manege_cattle_origin',function(){
+        return view('vendor.multiauth.admin.pages.cattle_origin');
+    })->name('origin');
+
+    Route::get('manege_meat_shape',function(){
+        return view('vendor.multiauth.admin.pages.meat_shape');
+    })->name('meat_shape');
+
+    Route::get('manege_meate_aera',function(){
+        return view('vendor.multiauth.admin.pages.meate_area');
+    })->name('meat_aera');
+
+    Route::get('manege_users',function(){
+        return view('vendor.multiauth.admin.pages.users');
+    })->name('users');
+
+    Route::get('stock_oprations',function(){
+        $oprations = StockOperation::all();
+        return view('vendor.multiauth.admin.pages.stock_opration',compact('oprations'));
+    })->name('stock_opration');
+
+    Route::post('activate','BaseController@activate')->name('activate');;
+    Route::post('de_activate','BaseController@deActivate')->name('de_activate');
+});
 

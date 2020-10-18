@@ -15,15 +15,14 @@
         </button>
       </div>
       
-      <users-component v-bind:routes = " { 
-          users : '{{route('get_users')}}',
-          add_user :'{{route('user_register')}}',
-          edit_user : '{{route('user_update')}}',
-          deActivate : '{{route('de_activate')}}',
-          activate : '{{route('activate')}}',
+      <stock-component v-bind:routes = " {
+          
+          stocks : '{{route('get_stock')}}',
+          edit_quantity :'{{route('edit_quantity')}}',
+          admin_id : '{{auth('admin')->user()->id}}'
           } "    
       >
-      </users-component>
+      </stock-component>
       
 
 @endsection

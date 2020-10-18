@@ -18,7 +18,11 @@
       <orders-component v-bind:routes = " {
           
           orders : '{{route('get_orders')}}',
-         
+          get_dirvers :'{{route('get_dirvers')}}',
+          add_order :'{{route('add_order_to_driver')}}',
+          edit_order :'{{route('edit_order_to_driver')}}',
+          deActivate : '{{route('de_activate')}}',
+          activate : '{{route('activate')}}',
           } "    
       >
       </orders-component>

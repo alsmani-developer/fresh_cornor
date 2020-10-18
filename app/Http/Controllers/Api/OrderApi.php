@@ -9,6 +9,7 @@ use App\Meat;
 use App\Discount;
 use App\OrdersMeat;
 use App\OrdersMeatsDiscount;
+use App\OrdersTransporter;
 use DB;
 use App\Http\Controllers\APIController;
 use Illuminate\Http\Request;
@@ -16,8 +17,37 @@ use Illuminate\Http\Request;
 class OrderApi extends APIController
 {
     public function getAllOrders(){
-        $query = Order::orderBy('id', 'DESC')->paginate(10);
+        $query = Order::orderBy('id', 'DESC')->with('user','orders_transporter.user','ordersMeats.meat')->paginate(10);
         return  response()->json($query);
+    }
+    public function addOrderToDriver(Request $request){
+        try{
+            $save = OrdersTransporter::firstOrCreate([
+                'order_id' => $request->order_id,
+                'user_id' =>  $request->user_id
+            ]);
+            
+            if( $save  ){
+                return response()->json(['status'=>'success',
+                            'title'=>'تم إسناد الطلب للسائق بنجاح']);
+            }else return response()->json(['status'=>'error','title'=>'internal server error']);
+        }catch(\Exception $e) {
+            return $e->getMessage();
+        }
+       
+
+    }
+    public function editOrderToDriver(Request $request){
+       
+        try{
+            $update = OrdersTransporter::where('order_id',$request->order_id)->update(['transporter_id'=>$request->user_id]);
+            if( $update ){
+                return response()->json(['status'=>'success',
+                            'title'=>'تم إسناد الطلب للسائق بنجاح']);
+            }else return response()->json(['status'=>'error','title'=>'internal server error']);
+        }catch(\Exception $e) {
+            return $e->getMessage();
+        }
     }
     public function getUserOrder(User $user){
         if($user !=null){

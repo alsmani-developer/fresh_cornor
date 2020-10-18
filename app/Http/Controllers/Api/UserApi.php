@@ -7,6 +7,7 @@ use JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Proposal;
+use Validator;
 use App\Http\Controllers\APIController;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Requests\RegistrationFormRequest;
@@ -146,18 +147,42 @@ class UserApi extends APIController
     public function register(Request $request){
      
         try{
-           
-            $user = new User();
-            $user->name = $request->name;
-            $user->user_type_id = $request->user_type_id;
-            $user->phone = $request->phone;
-            $user->status_id = $request->status_id;
-            $user->email = $request->status_id;
-            $user->password = bcrypt($request->password);
+            $validator = Validator::make($request->all(), [
 
-            $save = $user->save();
-            return $this->transactionsResponse($save);
-            
+                'name' => 'required|string|min:3',
+                'phone' => 'required|min:13|max:14',
+                'email' => 'required|email',
+                'password' => 'required',
+              
+   
+            ],
+            $messages = [
+                'name.required' => ' يجب ادخال اسم المستخدم ',
+                'phone.required'=>'يجب ادخال رقم هاتف المستخدم ',
+                'phone.min'=>'رقم هاتف غير صحيح ',
+                'name.string'=>' هذا الحقل لا يقبل ارقام',    
+            ]
+        
+             );
+             if($validator->passes()){
+
+                $user = new User();
+                $user->name = $request->name;
+                $user->user_type_id = $request->user_type_id;
+                $user->phone = $request->phone;
+                $user->email = $request->email;
+                $user->password = bcrypt($request->password);
+    
+                $save = $user->save();
+                if($request->dashbord){
+    
+                    return response()->json(['status'=>'success',
+                    'title'=>'تمت اضافه الحقل بنجاح']);
+                }
+                return $this->transactionsResponse($save);
+             }
+              return response()->json(['status'=>'error','title'=>$validator->errors()->all()]);
+           
         }catch(\Exception $e){
             return $e->getMessage();
         }

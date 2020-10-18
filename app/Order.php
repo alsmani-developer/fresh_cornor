@@ -20,4 +20,8 @@ class Order extends Model
     public  function status(){
         return $this->belongsTo(DeliveriesStatus::class);
     }
+    public  function  orders_transporter(){
+        return $this->hasOne('App\OrdersTransporter');
+    }
+   
 }

@@ -9,14 +9,45 @@ use App\Meat;
 use App\Discount;
 use App\OrdersMeat;
 use App\OrdersMeatsDiscount;
+use App\OrdersTransporter;
+use DB;
 use App\Http\Controllers\APIController;
 use Illuminate\Http\Request;
 
 class OrderApi extends APIController
 {
     public function getAllOrders(){
-        $query = Order::orderBy('id', 'DESC')->paginate(10);
+        $query = Order::orderBy('id', 'DESC')->with('user','orders_transporter.user','ordersMeats.meat')->paginate(10);
         return  response()->json($query);
+    }
+    public function addOrderToDriver(Request $request){
+        try{
+            $save = OrdersTransporter::firstOrCreate([
+                'order_id' => $request->order_id,
+                'user_id' =>  $request->user_id
+            ]);
+            
+            if( $save  ){
+                return response()->json(['status'=>'success',
+                            'title'=>'تم إسناد الطلب للسائق بنجاح']);
+            }else return response()->json(['status'=>'error','title'=>'internal server error']);
+        }catch(\Exception $e) {
+            return $e->getMessage();
+        }
+       
+
+    }
+    public function editOrderToDriver(Request $request){
+       
+        try{
+            $update = OrdersTransporter::where('order_id',$request->order_id)->update(['transporter_id'=>$request->user_id]);
+            if( $update ){
+                return response()->json(['status'=>'success',
+                            'title'=>'تم إسناد الطلب للسائق بنجاح']);
+            }else return response()->json(['status'=>'error','title'=>'internal server error']);
+        }catch(\Exception $e) {
+            return $e->getMessage();
+        }
     }
     public function getUserOrder(User $user){
         if($user !=null){
@@ -107,6 +138,26 @@ class OrderApi extends APIController
 
         return response()->json([
             'data'=>$meat
+        ], 200);
+    }
+    public function home(Request $request){
+        $discounts = Discount::take($request->limit)->get();
+        $meats = Meat::orderBy('id', 'DESC')->take( $request->limit)->get();
+        $orders = Meat::leftjoin('orders_meats', 'meats.id', 'orders_meats.meat_id')
+        ->select([DB::raw('Count(orders_meats.id) as order_count'), 'meats.id', 'meats.ar_name', 
+        'meats.cattels_types_id', 'meats.pic'])->
+         orderByDesc('order_count')->groupBy('meats.id', 'meats.ar_name', 
+        'meats.cattels_types_id', 'meats.pic')->take($request->limit)->get();
+       
+        $res = [
+            
+            'dicount'=> $discounts,
+            'new_meats'=> $meats ,
+            'most_order' => $orders,
+    
+         ];
+         return response()->json([
+            $res
         ], 200);
     }
 }

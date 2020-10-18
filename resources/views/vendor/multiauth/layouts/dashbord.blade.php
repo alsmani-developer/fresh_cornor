@@ -185,6 +185,32 @@ td, th{
                 <a  class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
+                  اداره المخزن
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  <a href="{{route('stocks')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>  المخزن </p>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                  <a href="{{route('stock_opration')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>  عمليات المخزن </p>
+                    </a>
+                  </li>
+                </ul>
+                
+              </li>
+              <li class="nav-item has-treeview ">
+                <a  class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
                   اداره التخفيضات
                     <i class="right fas fa-angle-left"></i>
                   </p>
@@ -240,7 +266,7 @@ td, th{
                       <li class="nav-item">
                       <a href="{{route('meat_aera')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>  مكان اللحمه</p>
+                            <p>  مكان المنتج</p>
                           </a>
                         </li>
                       </ul>
@@ -249,7 +275,7 @@ td, th{
                         <li class="nav-item">
                         <a href="{{route('meat_shape')}}" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
-                              <p>  شكل اللحمه</p>
+                              <p>  شكل المنتج</p>
                             </a>
                           </li>
                         </ul>

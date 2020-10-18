@@ -37,6 +37,8 @@ Vue.component('origin-component', require('./components/products/Origin.vue').de
 Vue.component('meate-shape', require('./components/products/MwateShpe.vue').default);
 Vue.component('meate-aera', require('./components/products/MeateAera.vue').default);
 Vue.component('meat-component', require('./components/products/Meats.vue').default);
+Vue.component('stock-component', require('./components/products/Stock.vue').default);
+Vue.component('stock-opration', require('./components/products/StockOpration.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 //Discount component
 Vue.component('discount-component', require('./components/discount/Discount.vue').default);

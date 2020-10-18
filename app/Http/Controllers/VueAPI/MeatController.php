@@ -9,6 +9,7 @@ use App\CattlesOrigin;
 use App\CattlesType;
 use App\MeatsArea;
 use App\MeatsShape;
+use App\Stocks;
 use Validator;
 use File;
 class MeatController extends Controller
@@ -73,9 +74,10 @@ class MeatController extends Controller
                 'meats_shapes_id' => 'required',
                 'ar_description' => 'required|string|min:3',
                 'en_description' => 'required|string|min:3',
-                
+                'price'=>'required',
+                'quantity'=>'required'
+   
             ],
-
             $messages = [
                 'ar_name.required' => ' يجب ادخال اسم النوع بالغه العربيه',
                 'en_name.required'=>'يجب ادخال اسم النوع بالغه الانجليزيه',
@@ -93,12 +95,12 @@ class MeatController extends Controller
                
             ]
         
-        );
+             );
     
             if ($validator->passes()) {
                 //save property main data into property table
                 $meat = new Meat();
-                $meat->fill($request->except(['img_name','pic']));
+                $meat->fill($request->except(['img_name','pic','quantity','price']));
                 $imagepath=  time() . rand(100, 1000).$request->img_name;
                 $localpath = "images/$imagepath";
                 file_put_contents($localpath,base64_decode($request->pic));
@@ -106,9 +108,14 @@ class MeatController extends Controller
 
                 $save = $meat->save();
                 if( $save){
-                  
-                    return response()->json(['status'=>'success',
-                    'title'=>'تمت اضافه الحقل بنجاح']);
+                    $stock = new Stocks();
+                    $stock->meat_id = $meat->id;
+                    $stock->price = $request->price;
+                    $stock->quantity =$request->quantity;
+                    $save =  $stock->save();
+                    if( $save )
+                        return response()->json(['status'=>'success',
+                        'title'=>'تمت اضافه الحقل بنجاح']);
 
                     }else   return response()->json(['status'=>'error','title'=>'internal server error']);
 

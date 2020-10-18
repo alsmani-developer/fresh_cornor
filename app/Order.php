@@ -24,4 +24,8 @@ class Order extends Model
     {
         return $this->hasOne(OrdersMeatsDiscount::class, 'order_id');
     }
+    public  function  orders_transporter(){
+        return $this->hasOne('App\OrdersTransporter');
+    }
+   
 }

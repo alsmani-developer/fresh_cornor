@@ -15,10 +15,12 @@
         </button>
       </div>
       
-      <users-component v-bind:routes = " {
-          
+      <users-component v-bind:routes = " { 
           users : '{{route('get_users')}}',
-         
+          add_user :'{{route('user_register')}}',
+          edit_user : '{{route('user_update')}}',
+          deActivate : '{{route('de_activate')}}',
+          activate : '{{route('activate')}}',
           } "    
       >
       </users-component>

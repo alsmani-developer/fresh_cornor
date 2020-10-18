@@ -7,6 +7,7 @@ use JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Proposal;
+use Validator;
 use App\Http\Controllers\APIController;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Requests\RegistrationFormRequest;
@@ -146,26 +147,65 @@ class UserApi extends APIController
     public function register(Request $request){
      
         try{
-           
-            $user = new User();
-            $user->name = $request->name;
-            $user->user_type_id = $request->user_type_id;
-            $user->phone = $request->phone;
-            $user->status_id = $request->status_id;
-            $user->email = $request->status_id;
-            $user->password = bcrypt($request->password);
+            $validator = Validator::make($request->all(), [
 
-            $save = $user->save();
-            return $this->transactionsResponse($save);
-            
+                'name' => 'required|string|min:3',
+                'phone' => 'required|min:13|max:14',
+                'email' => 'required|email',
+                'password' => 'required',
+              
+   
+            ],
+            $messages = [
+                'name.required' => ' يجب ادخال اسم المستخدم ',
+                'phone.required'=>'يجب ادخال رقم هاتف المستخدم ',
+                'phone.min'=>'رقم هاتف غير صحيح ',
+                'name.string'=>' هذا الحقل لا يقبل ارقام',    
+            ]
+        
+             );
+             if($validator->passes()){
+
+                $user = new User();
+                $user->name = $request->name;
+                $user->user_type_id = $request->user_type_id;
+                $user->phone = $request->phone;
+                $user->email = $request->email;
+                $user->password = bcrypt($request->password);
+    
+                $save = $user->save();
+                if($request->dashbord){
+    
+                    return response()->json(['status'=>'success',
+                    'title'=>'تمت اضافه الحقل بنجاح']);
+                }
+                return $this->transactionsResponse($save);
+             }
+              return response()->json(['status'=>'error','title'=>$validator->errors()->all()]);
+           
         }catch(\Exception $e){
             return $e->getMessage();
         }
       
       
     }
-    public function getCode(){
-        return response()->json('code',1111);
+    public function getCode(Request $request){
+        if(User::where('phone',$request->phone)->count() > 0){
+            return response()->json(['msg'=>'هذا الرقم موجود مسجل'],200);
+           
+        }else  {
+            $username = "Almayzab";		    // اسم المستخدم الخاص بك في الموقع
+            $password = "44"; 		// كلمة المرور الخاصة بك
+            $destinations =$request->phone; 
+            $sender = "Almayzab";//الارقام المرسل لها  ,, يتم وضع فاصلة بين الارقام المراد الارسال لها
+            $numbers = '12345678910111236542301236985452315245552012369874563201423698745';
+            $number=substr(str_shuffle(str_repeat($numbers , 5)), 0,5);
+            $message = "your verification number is".$number;      // محتوى الرسالة
+            $response = Curl::to('http://196.202.134.90/SMSbulk/webacc.aspx?user=Almayzab&pwd=44&smstext='.$number.'&Sender=Almayzab&Nums='.$destinations.'')->get();
+           
+            return response()->json(['code'=>$number],200);
+        }
+        
     }
      public function resetPassword(Request $request){
         try{

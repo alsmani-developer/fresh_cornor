@@ -8,7 +8,10 @@ class Meat extends Model
 {
     public $timestamps = false;
     protected $guarded=[];
-
+public function roles()
+{
+    return $this->belongsToMany('App\Role', 'role_user_table', 'user_id', 'role_id');
+}
     
     public function discounts(){
         return $this->belongsToMany('App\Discount', 'discounts_meats', 'discount_id', 'meat_id');

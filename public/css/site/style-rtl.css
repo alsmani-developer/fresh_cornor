@@ -1,0 +1,137 @@
+.rtl-text-right{
+    text-align: right;
+    direction: rtl;
+}
+.rtl-text-center{
+    text-align: center;
+    direction: rtl;
+}
+.rtl-text-left{
+    text-align: left;
+    direction: rtl;
+}
+.rtl-float-left{
+    float: left;
+}
+.rtl-float-right{
+    float: right;
+}
+.mr-30{
+    margin-right: 30px;
+}
+.mt-1{
+    margin-top: 10px;
+}
+.mt-2{
+    margin-top: 20px;
+}
+.mt-3{
+    margin-top: 30px;
+}
+.mt-4{
+    margin-top: 40px;
+}
+.header-search {
+    text-align: right;
+}
+
+.header-search form .input {
+    width: calc(100% - 116px);
+    
+    text-align: right;
+}
+
+.input-select {
+    direction: rtl;
+}
+
+.navbar-nav {
+    float: right;
+    direction: rtl;
+}
+
+.shop::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    width: 45%;
+}
+
+.shop::after {
+    top: 0;
+    bottom: 0;
+    left: auto;
+    right: 0;
+    transform: skewX(-45deg) translateX(100%);
+}
+
+.shop .shop-body {
+    top: auto;
+    bottom: 10px;
+    right: 0;
+    text-align: right;
+}
+.section-title{
+    text-align: center;
+}
+.footer .footer-links{
+    text-align: center;
+}
+.footer .footer-title{
+    text-align: center;
+}
+.footer .footer-links-main{
+    text-align: left;
+}
+.product-details{
+    text-align: right;
+}
+.product-links{
+    direction: rtl;
+}
+.add-to-cart{
+    direction: rtl;
+}
+.product-details .add-to-cart .qty-label .input-number{
+    width: 130px;
+}
+.rtl-float-left{
+    float: left !important;
+}
+.shop .shop-body .cta-btn {
+    position: relative;
+    bottom: 0;
+  }
+  .shop .shop-body{
+      padding: 24px;
+  }
+  .adv_search_btn{
+    float: left;
+    margin-left: 13px;
+  }
+  .iti__country-list{
+    text-align: right !important;
+  }
+  .iti__selected-flag{
+    padding: 0 11px 0 8px !important;
+  }
+  .iti--allow-dropdown .iti__flag-container, .iti--separate-dial-code .iti__flag-container{
+      right: 0 !important;
+      left: auto !important;
+  }
+  .iti--allow-dropdown input, .iti--allow-dropdown input[type="tel"], .iti--allow-dropdown input[type="text"], .iti--separate-dial-code input, .iti--separate-dial-code input[type="tel"], .iti--separate-dial-code input[type="text"]{
+    padding-left: 6px !important;
+    padding-right: 52px !important;
+    margin-right: 0 !important;
+    text-align: right !important;
+  }
+  .iti__arrow{
+      margin-right: 3px;
+  }
+  .ordercountbadge{
+    position: absolute;
+    top: 5px;
+  left: 10px;
+  }
